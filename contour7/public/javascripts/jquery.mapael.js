@@ -142,6 +142,7 @@
 			});
             
             //Written by Axel Verstappen - Detect Pinch zoom in and zoom out!
+            //START
             var $parentContainer = $container.parent();
             var myElement = document.getElementById('mapcontainer');
             var mc = new Hammer(myElement);
@@ -156,6 +157,7 @@
     
                 return false;
             });
+            //END
 			
 			// Enable zoom
 			if (options.map.zoom.enabled)
@@ -661,13 +663,30 @@
 			return false;
 		}).on("vmousemove", function(e) {
 			var currentLevel = $parentContainer.data("zoomLevel");
-			if (mousedown && currentLevel != 0) {
+			if (mousedown) {
 				var offsetX = (previousX - e.pageX) / (1 + (currentLevel * options.step)) * (mapWidth / paper.width)
 					, offsetY = (previousY - e.pageY) / (1 + (currentLevel * options.step)) * (mapHeight / paper.height)
 					, panX = Math.min(Math.max(0, paper._viewBox[0] + offsetX), (mapWidth - paper._viewBox[2]))
 					, panY = Math.min(Math.max(0, paper._viewBox[1] + offsetY), (mapHeight - paper._viewBox[3]));					
 				
 				if (Math.abs(offsetX) > 5 || Math.abs(offsetY) > 5) {
+                    //Altered by Axel Verstappen
+                    //START
+                    var leftPos = $('.mapcontainer').scrollLeft();
+                    var topPos = $('.mapcontainer').scrollTop();
+
+                    if(offsetX > 0) {
+                        $(".mapcontainer").scrollLeft(leftPos + offsetX);
+                    } else if(offsetX < 0) {
+                        $(".mapcontainer").scrollLeft(leftPos + offsetX);
+                    }
+                    if(offsetY > 0) {
+                        $(".mapcontainer").scrollTop(topPos + offsetY);
+                    } else if(offsetY < 0) {
+                        $(".mapcontainer").scrollTop(topPos + offsetY);
+                    }
+                    //END
+                    
 					$parentContainer.data({"panX" : panX, "panY" : panY});
 					
 					paper.setViewBox(panX, panY, paper._viewBox[2], paper._viewBox[3]);

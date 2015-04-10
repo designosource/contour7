@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".mapcontainer").mapael({
         map : {
             name : "mechelen",
-            zoom : { enabled : true, maxLevel : 10, mousewheel : true, init : { level : 2, latitude : 51.0288, longitude: 4.479} },
+            zoom : { enabled : true, maxLevel : 10, mousewheel : true },
         },
         areas: {
             "groen" : { attrs : { fill : "#009344" } },
