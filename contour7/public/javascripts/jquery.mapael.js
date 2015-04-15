@@ -644,6 +644,7 @@
 		
 		// Zoom
 		$parentContainer.data("zoomLevel", 0).data({"panX" : 0, "panY" : 0});
+        //Altered by Axel Verstappen
 		//$container.append($zoomIn).append($zoomOut);
         $('.controls').append($zoomIn).append($zoomOut);
 		

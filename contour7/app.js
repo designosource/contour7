@@ -4,11 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var socket_io = require('socket.io');
+var request = require('request');
+var testdata;
+request('http://preview-app.contour7.be/gateway/programme/complete', function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+    testdata = JSON.parse(body);// Show the HTML for the Google homepage. 
+  }
+});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var io  = socket_io();
+app.io  = io;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +35,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/map', routes);
 app.use('/users', users);
+
+//APPCACHE
+app.get('/manifest.appcache', function(req, res){
+    res.set("Content-Type", "text/cache-manifest");
+    res.set("Cache-Control", "no-store, no-cache");
+    res.sendFile(path.join(__dirname, 'manifest.appcache'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -54,6 +71,13 @@ app.use(function(err, req, res, next) {
   res.render('error', {
     message: err.message,
     error: {}
+  });
+});
+
+io.on('connection', function (socket) {
+  socket.emit('news', testdata);
+  socket.on('my other event', function (data) {
+    console.log(data);
   });
 });
 

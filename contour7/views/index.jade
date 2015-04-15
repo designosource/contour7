@@ -3,3 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to the caching thingy
+  
+  script(src="http://localhost:3000/socket.io/socket.io.js")
+  script.
+    var socket = io.connect('http://localhost:3000');
+    socket.on('news', function (data) {
+      console.log(data[0].lat);
+      socket.emit('my other event', { my: 'data' });
+    });

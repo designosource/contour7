@@ -12,7 +12,9 @@ $(document).ready(function(){
             "straatnaam" : { attrs : { fill : "black" } }
         },
         plots: {
-
+            /*"test": {
+                type: "circle", size: 30, latitude : 51.029714, longitude : 4.477886, attrs: { fill : "red" }, text : {content: ""}
+            }*/
         }
     });
     
@@ -67,6 +69,11 @@ $(document).ready(function(){
             streetnames.hide();
         }
     });
+    
+    /*var test = $("[data-id='test']");
+    test.click( function() {
+        alert('test');
+    });*/
     
     //Initial functions to be loaded
     streetnames.hide();
