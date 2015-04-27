@@ -6,10 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var socket_io = require('socket.io');
 var request = require('request');
-var testdata;
+
+var contourTestData;
 request('http://preview-app.contour7.be/gateway/programme/complete', function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    testdata = JSON.parse(body);// Show the HTML for the Google homepage. 
+    contourTestData = body;// Show the HTML for the Google homepage. 
   }
 });
 
@@ -75,10 +76,7 @@ app.use(function(err, req, res, next) {
 });
 
 io.on('connection', function (socket) {
-  socket.emit('news', testdata);
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
+  socket.emit('getJson', contourTestData);
 });
 
 

@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    console.log('Version 0.2');
+    console.log('Version 0.3');
+    //Map initializer
     $(".mapcontainer").mapael({
         map : {
             name : "mechelen",
@@ -18,6 +19,32 @@ $(document).ready(function(){
         }
     });
     
+    //Handle JSON object
+    function addLocations(jsonObject) {
+        var updatedOptions = {areas: {}, plots: {}};
+        var deletedPlots = [];
+		var newPlots = {};
+        $.each(jsonObject, function(i, item) {
+            newPlots[item.code] = {
+                type: "square", size: 5, latitude: item.lat, longitude: item.long, attrs: { fill: "green" }, text : {content: ""} 
+            };
+        });
+        
+        $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
+    }
+    
+    if(typeof(Storage) !== "undefined") {
+        if (localStorage.getItem('jsondata') === null) {
+            window.location="/";
+        } else {
+            var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
+            addLocations(jsonObject);
+        }
+    } else {
+        alert('Could not be cached');
+    }
+    
+    //Get and Update User location
     function updatePosition(currentLatitude, currentLongitude) {
         var updatedOptions = {areas: {}, plots: {}};
         var deletedPlots = ["user"];
@@ -30,6 +57,13 @@ $(document).ready(function(){
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
 	}
     
+    function showPosition(position) {
+        var currentLat = position.coords.latitude;
+        var currentLong = position.coords.longitude;
+        updatePosition(currentLat, currentLong);
+        calcDistance(currentLat, 51.0288, currentLong, 4.479);
+    }
+    
     function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
@@ -38,15 +72,8 @@ $(document).ready(function(){
         }
     }
     
-    function showPosition(position) {
-        var currentLat = position.coords.latitude;
-        var currentLong = position.coords.longitude;
-        updatePosition(currentLat, currentLong);
-        calcDistance(currentLat, 51.0288, currentLong, 4.479);
-    }
-    
+    //Calculate distance
     function toRad(Value) {
-        /** Converts numeric degrees to radians */
         return Value * Math.PI / 180;
     }
     function calcDistance(lat1, lat2, lng1, lng2) {
@@ -61,6 +88,7 @@ $(document).ready(function(){
         console.log(d);
     }
     
+    //Click events
     var streetnames = $("[data-id='straatnaam']");
     $('#toggle').click( function() {
         if(streetnames.css('display') == "none") {

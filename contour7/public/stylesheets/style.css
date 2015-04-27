@@ -31,6 +31,10 @@ path {
     width: inherit;
 }
 
+.map svg {
+    background-color: #B2B2B2;
+}
+
 .mapcontainer {
     max-width: 100%;
     width: 525px;
@@ -38,5 +42,4 @@ path {
     max-height: 100%;
     overflow-y:hidden;
     overflow-x:hidden;
-    background-color: #B2B2B2;
 }

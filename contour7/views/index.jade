@@ -3,12 +3,22 @@ extends layout
 block content
   h1= title
   p Welcome to the caching thingy
+  p=tester
   
+  script(type="text/javascript", src="/javascripts/jquery-latest.min.js")
   script(src="/socket.io/socket.io.js")
   script.
     var socket = io.connect('https://contour-web-app.herokuapp.com/');
     //var socket = io.connect('http://localhost:3000');
-    socket.on('news', function (data) {
-      console.log(data[0].lat);
-      socket.emit('my other event', { my: 'data' });
+    socket.on('getJson', function (data) {
+        if(typeof(Storage) !== "undefined") {
+            if (localStorage.getItem('jsondata') === null) {
+                localStorage.setItem('jsondata', data);
+                console.log('Json cached');
+            } else {
+                console.log('Already cached');
+            }
+        } else {
+            alert('Could not be cached');
+        }
     });
