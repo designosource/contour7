@@ -1,5 +1,6 @@
 $(document).ready(function(){
     console.log('Version 0.4');
+    
     //Map initializer
     $(".mapcontainer").mapael({
         map : {
@@ -21,8 +22,37 @@ $(document).ready(function(){
         var deletedPlots = [];
 		var newPlots = {};
         $.each(jsonObject, function(i, item) {
+            //Get artworks for this location
+            var artworks="";
+            $.each(item.artworks, function(a, artwork) {
+                artworks += "<li>"+artwork.code+"</li>";
+            });
+            
             newPlots[item.code] = {
-                type: "circle", size: 15, latitude: item.lat, longitude: item.long, attrs: { fill: "#2056a4" }, text : {content: item.id, position : "inner", attrs : { "font-size" : 12 , "font-weight" : "bold" , fill : "#fff" } }
+                type: "circle", 
+                size: 20, 
+                latitude: item.lat, 
+                longitude: item.long, 
+                attrs: { fill: "#2056a4" }, 
+                text : {
+                    content: item.id, 
+                    position : "inner", 
+                    attrs : { 
+                        "font-size" : 14 , 
+                        "font-weight" : "bold" , 
+                        fill : "#fff" } },
+                eventHandlers: {
+                    'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
+                        $('#clickContent').html(
+                            "<div id='testcontent'>"+
+                                "<h2>"+item.code+"</h2>"+
+                                "<ul>"+artworks+"</ul>"+
+                                "<a href='/location/"+item.id+"'>Locatie pagina</a>"+
+                                "<a href='#' class='closeBtn'>Close</a>"+
+                            "</div>"
+                        );
+                    }
+                }
             };
         });
         
@@ -46,7 +76,11 @@ $(document).ready(function(){
         var deletedPlots = ["user"];
 		var newPlots = {
             "user": {
-                type: "image", url: "http://www.neveldo.fr/mapael/marker.png", width: 12, height: 40, latitude : currentLatitude, longitude : currentLongitude, attrs: { fill : "red" }, text : {content: ""}
+                type: "image", 
+                url: "/images/user_icon.svg", 
+                width: 8, height: 20, 
+                latitude : currentLatitude, longitude : currentLongitude, 
+                text : {content: ""}
             }
 		};
         
@@ -85,11 +119,10 @@ $(document).ready(function(){
     }
     
     //Click events
-    
-    /*var test = $("[data-id='test']");
-    test.click( function() {
-        alert('test');
-    });*/
+    $("#clickContent").on('click', 'a.closeBtn', function(e){
+        $('#clickContent').html("");
+        return false;
+    });
     
     //Initial functions to be loaded
     getLocation();
