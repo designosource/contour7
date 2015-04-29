@@ -38,11 +38,11 @@ app.use('/map', routes);
 app.use('/users', users);
 
 //APPCACHE
-app.get('/manifest.appcache', function(req, res){
+/*app.get('/manifest.appcache', function(req, res){
     res.set("Content-Type", "text/cache-manifest");
     res.set("Cache-Control", "no-store, no-cache");
     res.sendFile(path.join(__dirname, 'manifest.appcache'));
-});
+});*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

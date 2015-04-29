@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    console.log('Version 0.3');
+    console.log('Version 0.4');
     //Map initializer
     $(".mapcontainer").mapael({
         map : {
@@ -7,15 +7,11 @@ $(document).ready(function(){
             zoom : { enabled : true, maxLevel : 10, mousewheel : true },
         },
         areas: {
-            "groen" : { attrs : { fill : "#009344" } },
-            "water" : { attrs : { fill : "#1B75BB" } },
+            "groen" : { attrs : { fill : "#129764" } },
+            "water" : { attrs : { fill : "#6283c2" } },
             "straat" : { attrs : { fill : "#fff" } },
-            "straatnaam" : { attrs : { fill : "black" } }
-        },
-        plots: {
-            /*"test": {
-                type: "circle", size: 30, latitude : 51.029714, longitude : 4.477886, attrs: { fill : "red" }, text : {content: ""}
-            }*/
+            "straatnaam" : { attrs : { fill : "#666666" } },
+            "parkwaternaam" : { attrs : { fill : "#fff" } }
         }
     });
     
@@ -26,7 +22,7 @@ $(document).ready(function(){
 		var newPlots = {};
         $.each(jsonObject, function(i, item) {
             newPlots[item.code] = {
-                type: "square", size: 5, latitude: item.lat, longitude: item.long, attrs: { fill: "green" }, text : {content: ""} 
+                type: "circle", size: 15, latitude: item.lat, longitude: item.long, attrs: { fill: "#2056a4" }, text : {content: item.id, position : "inner", attrs : { "font-size" : 12 , "font-weight" : "bold" , fill : "#fff" } }
             };
         });
         
@@ -50,7 +46,7 @@ $(document).ready(function(){
         var deletedPlots = ["user"];
 		var newPlots = {
             "user": {
-                type: "circle", size: 10, latitude : currentLatitude, longitude : currentLongitude, attrs: { fill : "red" }, text : {content: ""}
+                type: "image", url: "http://www.neveldo.fr/mapael/marker.png", width: 12, height: 40, latitude : currentLatitude, longitude : currentLongitude, attrs: { fill : "red" }, text : {content: ""}
             }
 		};
         
@@ -89,14 +85,6 @@ $(document).ready(function(){
     }
     
     //Click events
-    var streetnames = $("[data-id='straatnaam']");
-    $('#toggle').click( function() {
-        if(streetnames.css('display') == "none") {
-            streetnames.show();
-        } else {
-            streetnames.hide();
-        }
-    });
     
     /*var test = $("[data-id='test']");
     test.click( function() {
@@ -104,7 +92,6 @@ $(document).ready(function(){
     });*/
     
     //Initial functions to be loaded
-    streetnames.hide();
     getLocation();
     setInterval(getLocation, 5000);
 });
