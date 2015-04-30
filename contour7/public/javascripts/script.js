@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    console.log('Version 0.4');
+    console.log('Version 0.5');
     
     //Map initializer
     $(".mapcontainer").mapael({
@@ -78,25 +78,33 @@ $(document).ready(function(){
             "user": {
                 type: "image", 
                 url: "/images/user_icon.svg", 
-                width: 8, height: 20, 
+                width: 10, height: 25, 
                 latitude : currentLatitude, longitude : currentLongitude, 
                 text : {content: ""}
             }
 		};
         
+        //$(".mapcontainer").trigger('zoom', {level : 10, latitude : currentLatitude, longitude : currentLongitude});
+        
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
 	}
     
     function showPosition(position) {
-        var currentLat = position.coords.latitude;
-        var currentLong = position.coords.longitude;
-        updatePosition(currentLat, currentLong);
-        calcDistance(currentLat, 51.0288, currentLong, 4.479);
+            var currentLat = position.coords.latitude;
+            var currentLong = position.coords.longitude;
+            updatePosition(currentLat, currentLong);
+            calcDistance(currentLat, 51.0288, currentLong, 4.479);
     }
     
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.watchPosition(
+                showPosition,
+                function(error){
+                     console.log(error);
+                },{ 
+                    enableHighAccuracy: true
+                });
         } else {
             alert("Geolocation is not supported by this browser.");
         }
@@ -126,5 +134,4 @@ $(document).ready(function(){
     
     //Initial functions to be loaded
     getLocation();
-    setInterval(getLocation, 5000);
 });
