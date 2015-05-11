@@ -1,5 +1,8 @@
 $(document).ready(function(){
-    console.log('Version 0.5');
+    console.log('Version 0.5.1');
+    
+    //Variables
+    var executed = false;
     
     //Map initializer
     $(".mapcontainer").mapael({
@@ -64,6 +67,7 @@ $(document).ready(function(){
             window.location="/";
         } else {
             var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
+            console.log(jsonObject);
             addLocations(jsonObject);
         }
     } else {
@@ -77,16 +81,19 @@ $(document).ready(function(){
 		var newPlots = {
             "user": {
                 type: "image", 
-                url: "/images/user_icon.svg", 
+                url: "images/user_icon.svg", 
                 width: 10, height: 25, 
                 latitude : currentLatitude, longitude : currentLongitude, 
                 text : {content: ""}
             }
 		};
         
-        //$(".mapcontainer").trigger('zoom', {level : 10, latitude : currentLatitude, longitude : currentLongitude});
-        
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
+        
+        if (!executed) {
+            executed = true;
+            $(".mapcontainer").trigger('zoom', {level : 10, latitude : currentLatitude, longitude : currentLongitude});
+        }
 	}
     
     function showPosition(position) {
