@@ -6,15 +6,76 @@ $(document).ready(function(){
             zoom : { enabled : true, maxLevel : 10, mousewheel : false, init : { level : 2, latitude : 51.0288, longitude: 4.479} },
         },
         areas: {
-            "groen" : { attrs : { fill : "#009344" } },
-            "water" : { attrs : { fill : "#1B75BB" } },
+            "groen" : { attrs : { fill : "#129764" } },
+            "water" : { attrs : { fill : "#6283c2" } },
             "straat" : { attrs : { fill : "#fff" } },
-            "straatnaam" : { attrs : { fill : "black" } }
+            "straatnaam" : { attrs : { fill : "#666666" } },
+            "parkwaternaam" : { attrs : { fill : "#fff" } }
         },
         plots: {
 
         }
     });
+    
+    
+    var updatedOptions = {areas: {}, plots: {}};
+    var deletedPlots = [];
+    var newPlots = {};
+    $.ajax({
+     type: "GET",
+     url: "http://preview-app.contour7.be/gateway/programme/complete",
+     async: false,
+     beforeSend: function(x) {
+      if(x && x.overrideMimeType) {
+       x.overrideMimeType("application/j-son;charset=UTF-8");
+      }
+     },
+     dataType: "json",
+     success: function(contour){
+        console.log(contour);
+         
+        $.each(contour, function(i, item)
+        {
+            var artworks = "";
+            $.each(item.artworks, function(a, artwork)
+            {
+                artworks += "<li>"+artwork.name_nl+"</li>";
+            });
+            //console.log(item);
+            
+            newPlots[item.code] = {
+                type: "circle",
+                size: 20,
+                latitude: item.lat,
+                longitude: item.long,
+                attrs: { fill: "#2056a4" },
+                text: {
+                    content: item.id,
+                    position: "inner",
+                    attrs: {
+                        "font-size": 14,
+                        "font-weight" : "bold",
+                        fill: "#fff"
+                    }
+                },
+                eventHandlers: {
+                    'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
+                        $('#clickContent').html(
+                            "<div id='testcontent'>"+
+                                "<h2><a href='/location/"+item.id+"'>"+item.code+"</a></h2>"+
+                                "<a href='#' class='closeBtn'></a>"+
+                                "<ul>"+artworks+"</ul>"+
+                            "</div>"
+                        );
+                    }
+                }
+            };
+        }); 
+     }
+    });
+    
+    $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
+    
     
     function updatePosition(currentLatitude, currentLongitude) {
         var updatedOptions = {areas: {}, plots: {}};

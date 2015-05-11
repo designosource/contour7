@@ -1,0 +1,116 @@
+$blue: #2056A4;
+$white: #fff;
+
+html, body {
+    height: 100%;
+    font-family: 'Arial';
+}
+
+.controls
+{
+    position: absolute;
+    top: 0px;
+    z-index: 5;
+}
+
+.zoomIn, .zoomOut {
+    background-color:#fff;
+    border:1px solid #ccc;
+    color:#000;
+    width:30px;
+    height:30px;
+    line-height: 30px;
+    text-align:center;
+    border-radius:3px;
+    cursor:pointer;
+    position: relative;
+    top : 10px;
+    font-weight:bold;
+    left : 10px;
+}
+
+
+.zoomOut {
+    top:15px;
+}
+
+.map path {
+    pointer-events: none;
+    stroke: none;
+}
+
+.map circle
+{
+    stroke: none;
+}
+
+.map text
+{
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.map {
+    width: inherit;
+}
+
+.map svg {
+    background-color: #B2B2B2;
+}
+
+.mapcontainer {
+    max-width: 100%;
+    width: 525px;
+    height: 100%;
+    max-height: 100%;
+    overflow-y:hidden;
+    overflow-x:hidden;
+    margin: 0 auto;
+}
+
+#clickContent {
+    position:fixed;
+    bottom : 0px;
+    width: inherit;
+
+    #testcontent 
+    {
+    background-color: white;
+        
+        h2
+        {
+        background-color: $blue;
+        padding: 10px 30px;    
+            a
+            {
+            text-decoration: none;
+            color: $white;
+            }
+        }
+
+        .closeBtn
+        {
+        display: inline-block;    
+        background-color: $blue;
+        background-image: url(../../images/close.png);
+        background-repeat: no-repeat;
+        background-size: 18px;    
+        height: 18px;
+        width: 18px;
+        position: relative;
+        z-index: 10;
+        left: 94%;
+        bottom: 27px    
+        }
+        
+        ul
+        {
+        padding: 0px 30px 10px 30px;
+        }
+        
+    }
+}
