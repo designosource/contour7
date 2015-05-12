@@ -20,17 +20,21 @@ $(document).ready(function(){
     });
     
     //Handle JSON object
-    function addLocations(jsonObject) {
+    function handleContour(jsonObject) {
+        //1. Add Locations
+        //2. Locations Menu
         var updatedOptions = {areas: {}, plots: {}};
         var deletedPlots = [];
 		var newPlots = {};
+        var locations = "";
         $.each(jsonObject, function(i, item) {
+            //1.
             //Get artworks for this location
             var artworks="";
             $.each(item.artworks, function(a, artwork) {
                 artworks += "<li>"+artwork.code+"</li>";
             });
-            
+            //Add Locations
             newPlots[item.code] = {
                 type: "circle", 
                 size: 20, 
@@ -48,15 +52,21 @@ $(document).ready(function(){
                     'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
                         $('#clickContent').html(
                             "<div id='testcontent'>"+
-                                "<h2>"+item.code+"</h2>"+
+                                "<h2><a href='/location/"+item.id+"'>[ "+item.id+" ] "+item.code+"</a></h2>"+
+                                "<a href='#' class='closeBtn'></a>"+
                                 "<ul>"+artworks+"</ul>"+
-                                "<a href='/location/"+item.id+"'>Locatie pagina</a>"+
-                                "<a href='#' class='closeBtn'>Close</a>"+
                             "</div>"
                         );
                     }
                 }
             };
+            
+            //2.
+            //Locations Menu
+            locations += "<li><h3><img src='images/loc"+item.id+"_bl.png' alt='number'/>"+item.code+"</h3><p>"+item.address_nl+"</p></li>";
+            $('#locaties_list').html(
+                "<ul>"+locations+"</ul>"
+            );
         });
         
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
@@ -68,7 +78,7 @@ $(document).ready(function(){
         } else {
             var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
             console.log(jsonObject);
-            addLocations(jsonObject);
+            handleContour(jsonObject);
         }
     } else {
         alert('Could not be cached');

@@ -10,13 +10,23 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="mapcontainer" id="mapcontainer">
-        <div class="map">
-            <span>The map is loading</span>
+    <div class="flexcontainer">
+      <div id="mapcontainer" class="mapcontainer">
+        <div class="map"><span>The map is loading...</span></div>
+        <div class="controls"></div>
+        <div id="clickContent"></div>
+      </div>
+      <div class="datacontainer">
+        <div class="locaties">
+          <div class="locaties_header">
+            <h2>Contour locaties</h2>
+          </div>
+          <div id="locaties_list">
+          </div>
         </div>
+        <div class="locatie"></div>
+      </div>
     </div>
-    <div class="controls"></div>
-    <div id="clickContent"></div>
     
     <script type="text/javascript" src="js/jquery-latest.min.js"></script>
     <script type="text/javascript">
