@@ -63,10 +63,75 @@ $(document).ready(function(){
             
             //2.
             //Locations Menu
-            locations += "<li><h3><img src='images/loc"+item.id+"_bl.png' alt='number'/>"+item.code+"</h3><p>"+item.address_nl+"</p></li>";
+            locations += "<li class='locaties_item'><img src='images/loc"+item.id+"_bl.png' alt='number'/><h3>"+item.code+"</h3></li>";
             $('#locaties_list').html(
                 "<ul>"+locations+"</ul>"
             );
+            
+            $(".locaties_item").on('mouseover',function(){
+                $(this).css({"background-color":"#2056A4","color":"white"});
+                $(this).find('h3').css({"background-image":"url(images/arrowright_w.png)"});
+                var src = $(this).find('img').attr('src');
+                switch(src){
+                case 'images/loc1_bl.png':
+                    $(this).find('img').attr('src','images/loc1.png');    
+                break; 
+                case 'images/loc2_bl.png':
+                    $(this).find('img').attr('src','images/loc2.png');     
+                break;
+                case 'images/loc3_bl.png':
+                    $(this).find('img').attr('src','images/loc3.png');     
+                break;
+                case 'images/loc4_bl.png':
+                    $(this).find('img').attr('src','images/loc4.png');     
+                break;
+                case 'images/loc5_bl.png':
+                    $(this).find('img').attr('src','images/loc5.png');     
+                break;
+                case 'images/loc6_bl.png':
+                    $(this).find('img').attr('src','images/loc6.png');     
+                break;
+                case 'images/loc7_bl.png':
+                    $(this).find('img').attr('src','images/loc7.png');     
+                break;
+                case 'images/loc8_bl.png':
+                    $(this).find('img').attr('src','images/loc8.png');     
+                break;        
+                }
+            });
+            
+            $(".locaties_item").on('mouseout',function(){
+                $(this).css({"background-color":"#fff","color":"#2056A4"});
+                $(this).find('h3').css({"background-image":"url(images/arrowright.png)"});
+                var src = $(this).find('img').attr('src');
+                switch(src){
+                case 'images/loc1.png':
+                    $(this).find('img').attr('src','images/loc1_bl.png');    
+                break; 
+                case 'images/loc2.png':
+                    $(this).find('img').attr('src','images/loc2_bl.png');     
+                break;
+                case 'images/loc3.png':
+                    $(this).find('img').attr('src','images/loc3_bl.png');     
+                break;
+                case 'images/loc4.png':
+                    $(this).find('img').attr('src','images/loc4_bl.png');     
+                break;
+                case 'images/loc5.png':
+                    $(this).find('img').attr('src','images/loc5_bl.png');     
+                break;
+                case 'images/loc6.png':
+                    $(this).find('img').attr('src','images/loc6_bl.png');     
+                break;
+                case 'images/loc7.png':
+                    $(this).find('img').attr('src','images/loc7_bl.png');     
+                break;
+                case 'images/loc8.png':
+                    $(this).find('img').attr('src','images/loc8_bl.png');     
+                break;        
+                }
+            });
+            
         });
         
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
