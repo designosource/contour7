@@ -21,14 +21,18 @@ $(document).ready(function(){
     
     //Handle JSON object
     function handleContour(jsonObject) {
-        //1. Add Locations
-        //2. Locations Menu
+        /*JQuery OVERZICHT:
+          1. Add Locations + popup
+          2. Locations Menu
+          3. Info per locatie*/
         var updatedOptions = {areas: {}, plots: {}};
         var deletedPlots = [];
 		var newPlots = {};
         var locations = "";
+        var art = "";
+        var location = "";
         $.each(jsonObject, function(i, item) {
-            //1.
+            //1. Add Locations + popup
             //Get artworks for this location
             var artworks="";
             $.each(item.artworks, function(a, artwork) {
@@ -61,16 +65,17 @@ $(document).ready(function(){
                 }
             };
             
-            //2.
-            //Locations Menu
-            locations += "<li class='locaties_item'><img src='images/loc"+item.id+"_bl.png' alt='number'/><h3>"+item.code+"</h3></li>";
+            //2. Locations Menu
+            //Get all locations
+            locations += "<li class='locaties_item'><img src='images/loc"+item.id+"_bl.png' alt='number'/><h3>"+item.code+"</h3><p id='idselect'>"+item.id+"</p></li>";
             $('#locaties_list').html(
                 "<ul>"+locations+"</ul>"
             );
             
+            //hover for locations menu
             $(".locaties_item").on('mouseover',function(){
                 $(this).css({"background-color":"#2056A4","color":"white"});
-                $(this).find('h3').css({"background-image":"url(images/arrowright_w.png)"});
+                $(this).css({"background-image":"url(images/arrowright_w.png)"});
                 var src = $(this).find('img').attr('src');
                 switch(src){
                 case 'images/loc1_bl.png':
@@ -102,7 +107,7 @@ $(document).ready(function(){
             
             $(".locaties_item").on('mouseout',function(){
                 $(this).css({"background-color":"#fff","color":"#2056A4"});
-                $(this).find('h3').css({"background-image":"url(images/arrowright.png)"});
+                $(this).css({"background-image":"url(images/arrowright.png)"});
                 var src = $(this).find('img').attr('src');
                 switch(src){
                 case 'images/loc1.png':
@@ -131,8 +136,24 @@ $(document).ready(function(){
                 break;        
                 }
             });
-            
         });
+        
+        //3.
+        //aparte locatie selecteren
+        var loc = jsonObject[1];
+        var locNaam = loc.name_nl;
+        var locAdres = loc.address_nl;
+        var locDescr = loc.description_nl;
+        var locImage = loc.image;
+        $('.locatie_header h2').html(locNaam);
+        console.log(jsonObject[0].code);
+        $('#adres').html(locAdres);
+        $('#beschrijving').html(locDescr);
+        
+        $.each(loc.artworks, function(a, artwork) {
+                art += "<li><img src='"+artwork.image+"'><div><h3>"+artwork.name_nl+"</h3><p>"+artwork.artist['name']+"</p></div></li>";
+        });    
+        $('.art_lists').html("<ul>"+art+"</ul>");    
         
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
     }
