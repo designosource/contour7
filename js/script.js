@@ -19,12 +19,15 @@ $(document).ready(function(){
         }
     });
     
-    //Handle JSON object
-    function handleLocations(jsonObject) {
-        /*JQuery OVERZICHT:
+    /*JQuery OVERZICHT:
           1. Add Locations + popup
           2. Locations Menu
-          3. Info per locatie*/
+          3. Menu animatie
+          4. Info per locatie*/
+    
+    //Handle JSON object
+    function handleLocations(jsonObject) {
+        
         var updatedOptions = {areas: {}, plots: {}};
         var deletedPlots = [];
 		var newPlots = {};
@@ -144,6 +147,26 @@ $(document).ready(function(){
     }
     
     //3.
+    //menu animatie
+    var locationList = $('#locaties_list');
+    var locationHead = $('.locaties_header');
+    locationList.hide();
+    locationHead.on('click', function(){
+        console.log('click');
+        if(locationHead.hasClass('active')) {
+            locationList.slideUp('slow', function(){});
+            $(this).removeClass('active'); 
+            $(this).find('h2').css("background-image","url(images/arrow-up.png)");
+        }
+        else {
+            locationList.slideDown('slow', function(){});
+            $(this).addClass('active'); 
+            $(this).find('h2').css("background-image","url(images/arrow-down.png)");
+        }
+    
+    });
+ 
+    //4.
     //aparte locatie selecteren
     
 function locInfo(jsonObject, pos,id){

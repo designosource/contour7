@@ -87,6 +87,7 @@ html, body {
     bottom : 0px;
     width: inherit;
     max-width: inherit;
+    z-index: 50;
 
     #testcontent 
     {
@@ -137,8 +138,14 @@ overflow-x:hidden;
 margin: 0 auto;    
     .locaties
     {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        max-width: inherit;
+        z-index: 20;
         .locaties_header
         {
+            background-color: $white;
             h2
             {
             text-transform: uppercase;
@@ -146,14 +153,15 @@ margin: 0 auto;
             font-weight: 700;
             padding: 20px 20px 20px 0px; 
             margin: 0px 20px 0px 30px;    
-            background-image: url(../images/arrow-down.png);
+            background-image: url(../images/arrow-up.png);
             background-repeat: no-repeat;
-            background-position: center right;
+            background-position: 100% center;
             background-size: 25px;    
             }
         }
         #locaties_list
         {
+            background-color: $white;
             li
             {
             padding: 10px 25px 10px 30px;  
@@ -284,12 +292,46 @@ and (min-width : 350px) {
     .flexcontainer{
       .datacontainer
       {
+        .locaties {
+          .locaties_header {
+            h2 {
+              background-position: 98% center;
+            }
+          }
+        }
+          
         .locatie
         {
           .beschrijving {
             #adres {
               display: inline-block;
               padding-left: 10px;    
+            }
+          }
+        }
+      }
+    }
+
+}
+
+@media only screen 
+and (min-width : 480px) {
+
+    .flexcontainer{
+      .datacontainer
+      {
+        .locaties {
+          .locaties_header {
+            h2 {
+              background-position: 96% center;
+            }
+          }
+        }
+          
+        .locatie
+        {
+          .beschrijving {
+            #adres {    
             }
           }
         }
