@@ -13,18 +13,19 @@
 </head>
 <body>
     <div class="flexcontainer">
-      <h1 class="apptitle">CONTOUR 7</h1>
-      <div id="mapcontainer" class="mapcontainer">
-        <div class="map"><span>The map is loading...</span></div>
-        <div class="controls"></div>
-        <div id="clickContent"></div>
-      </div>
       <div class="datacontainer">
-        <div class="locaties">
-          <div class="locaties_header">
-            <h2>Contour locaties</h2>
+        <div class="locatie">
+          <div class="locatie_header">
+            <img id="locImage" src="" alt="">
+            <h2>Naam locatie</h2>
           </div>
-          <div id="locaties_list">
+          <div class="beschrijving">
+            <img src="" alt="">
+            <p id="adres">Adres</p>
+            <p id="beschrijving">Beschrijving</p>
+            <p id="idloc"></p>
+          </div>
+          <div class="art_lists">
           </div>
         </div>
       </div>
@@ -34,6 +35,20 @@
     <script type="text/javascript">
         $(document).bind("mobileinit", function () {
             $.mobile.autoInitializePage = false;
+        });
+        
+        $(document).ready(function(){
+            function getUrlVars() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
+                });
+                return vars;
+            }
+
+            var first = getUrlVars()["id"];
+            console.log(first);
+            $('#idloc').html(first);
         });
     </script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>

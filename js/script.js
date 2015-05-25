@@ -20,7 +20,7 @@ $(document).ready(function(){
     });
     
     //Handle JSON object
-    function handleContour(jsonObject) {
+    function handleLocations(jsonObject) {
         /*JQuery OVERZICHT:
           1. Add Locations + popup
           2. Locations Menu
@@ -29,7 +29,6 @@ $(document).ready(function(){
         var deletedPlots = [];
 		var newPlots = {};
         var locations = "";
-        var art = "";
         var location = "";
         $.each(jsonObject, function(i, item) {
             //1. Add Locations + popup
@@ -67,14 +66,15 @@ $(document).ready(function(){
             
             //2. Locations Menu
             //Get all locations
-            locations += "<li class='locaties_item'><img src='images/loc"+item.id+"_bl.png' alt='number'/><h3>"+item.code+"</h3><p id='idselect'>"+item.id+"</p></li>";
+            locations += "<li class='locaties_item'><a class='loclink' href='locatie.html?id="+item.id+"'><img src='images/loc"+item.id+"_bl.png' alt='number'/><h3>"+item.code+"</h3><p id='idselect'>"+item.id+"</p></a></li>";
             $('#locaties_list').html(
                 "<ul>"+locations+"</ul>"
             );
             
             //hover for locations menu
             $(".locaties_item").on('mouseover',function(){
-                $(this).css({"background-color":"#2056A4","color":"white"});
+                $(this).css({"background-color":"#2056A4"});
+                $(this).find('a').css({"color":"white"});
                 $(this).css({"background-image":"url(images/arrowright_w.png)"});
                 var src = $(this).find('img').attr('src');
                 switch(src){
@@ -106,8 +106,9 @@ $(document).ready(function(){
             });
             
             $(".locaties_item").on('mouseout',function(){
-                $(this).css({"background-color":"#fff","color":"#2056A4"});
+                $(this).css({"background-color":"#fff"});
                 $(this).css({"background-image":"url(images/arrowright.png)"});
+                $(this).find('a').css({"color":"#2056A4"});
                 var src = $(this).find('img').attr('src');
                 switch(src){
                 case 'images/loc1.png':
@@ -137,26 +138,64 @@ $(document).ready(function(){
                 }
             });
         });
-        
-        //3.
-        //aparte locatie selecteren
-        var loc = jsonObject[1];
-        var locNaam = loc.name_nl;
-        var locAdres = loc.address_nl;
-        var locDescr = loc.description_nl;
-        var locImage = loc.image;
-        $('.locatie_header h2').html(locNaam);
-        console.log(jsonObject[0].code);
-        $('#adres').html(locAdres);
-        $('#beschrijving').html(locDescr);
-        
-        $.each(loc.artworks, function(a, artwork) {
-                art += "<li><img src='"+artwork.image+"'><div><h3>"+artwork.name_nl+"</h3><p>"+artwork.artist['name']+"</p></div></li>";
-        });    
-        $('.art_lists').html("<ul>"+art+"</ul>");    
+           
         
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
     }
+    
+    //3.
+    //aparte locatie selecteren
+    
+function locInfo(jsonObject, pos,id){
+    var loc = jsonObject[pos];
+    var locNaam = loc.name_nl;
+    var locAdres = loc.address_nl;
+    var locDescr = loc.description_nl;
+    var locImage = loc.image;
+    var art = "";
+          
+    $('.locatie_header h2').html(locNaam);
+    $('#adres').html(locAdres);
+    $('#beschrijving').html(locDescr);
+
+    $.each(loc.artworks, function(a, artwork) {
+      art += "<li>"+
+             "<img src='"+artwork.image+"'>"+
+             "<div>"+
+                "<h3>"+artwork.name_nl+"</h3>"+
+                "<p>"+artwork.artist['name']+"</p>"+
+             "</div>"+
+             "</li>";
+    });    
+    $('.art_lists').html("<ul>"+art+"</ul>");
+            
+    switch(id){
+        case '1':
+            $('#locImage').attr('src','images/loc1.png');    
+        break; 
+        case '2':
+            $('#locImage').attr('src','images/loc2.png');     
+        break;
+        case '3':
+            $('#locImage').attr('src','images/loc3.png');     
+        break;
+        case '4':
+            $('#locImage').attr('src','images/loc4.png');     
+        break;
+        case '5':
+            $('#locImage').attr('src','images/loc5.png');     
+        break;
+        case '6':
+            $('#locImage').attr('src','images/loc6.png');     
+        break;
+        case '7':
+            $('#locImage').attr('src','images/loc7.png');     
+        break;
+        case '8':
+            $('#locImage').attr('src','images/loc8.png');     
+        break;        
+    }
+}    
     
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('jsondata') === null) {
@@ -164,7 +203,16 @@ $(document).ready(function(){
         } else {
             var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
             console.log(jsonObject);
-            handleContour(jsonObject);
+            handleLocations(jsonObject);
+            
+            var idLoc = $('#idloc').text();
+            console.log(idLoc);
+    
+            if( idLoc != "") {
+                var pos = idLoc - 1;
+                locInfo(jsonObject, pos,idLoc); 
+    
+            }
         }
     } else {
         alert('Could not be cached');
