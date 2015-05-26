@@ -67,7 +67,6 @@ $(document).ready(function(){
             window.location="/";
         } else {
             var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
-            console.log(jsonObject);
             addLocations(jsonObject);
         }
     } else {

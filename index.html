@@ -22,7 +22,6 @@
                     type: 'GET',
                     success: function (resp) {
                         localStorage.setItem('jsondata', JSON.stringify(resp));
-                        console.log(resp);
                     },
                     error: function(e) {
                         console.log('Error: '+e);
