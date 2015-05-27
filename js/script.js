@@ -225,9 +225,6 @@ function locInfo(jsonObject, pos,id){
             window.location="/";
         } else {
             var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
-<<<<<<< HEAD
-            addLocations(jsonObject);
-=======
             console.log(jsonObject);
             handleLocations(jsonObject);
             
@@ -239,7 +236,6 @@ function locInfo(jsonObject, pos,id){
                 locInfo(jsonObject, pos,idLoc); 
     
             }
->>>>>>> 08e5a75920dd3263ffdc77ab22d394ba8b1d9223
         }
     } else {
         alert('Could not be cached');
@@ -259,7 +255,7 @@ function locInfo(jsonObject, pos,id){
             }
 		};
         
-        $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
+        $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 0}]);
         
         if (!executed) {
             executed = true;
@@ -280,8 +276,6 @@ function locInfo(jsonObject, pos,id){
                 showPosition,
                 function(error){
                      console.log(error);
-                },{ 
-                    enableHighAccuracy: true
                 });
         } else {
             alert("Geolocation is not supported by this browser.");
