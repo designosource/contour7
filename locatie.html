@@ -36,20 +36,6 @@
         $(document).bind("mobileinit", function () {
             $.mobile.autoInitializePage = false;
         });
-        
-        $(document).ready(function(){
-            function getUrlVars() {
-                var vars = {};
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                    vars[key] = value;
-                });
-                return vars;
-            }
-
-            var first = getUrlVars()["id"];
-            console.log(first);
-            $('#idloc').html(first);
-        });
     </script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
@@ -58,5 +44,6 @@
     <script type="text/javascript" src="js/jquery.mapael.js"></script>
     <script type="text/javascript" src="js/mechelen.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/locations.js"></script>
 </body>
 </html>
