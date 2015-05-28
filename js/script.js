@@ -63,87 +63,20 @@ $(document).ready(function(){
             
             //2. Locations Menu
             //Get all locations
-            locations += "<li class='locaties_item'><a class='loclink' href='locatie.html?id="+item.id+"'><p>[<span>" + item.id + "</span>]</p><h3>"+item.code+"</h3></a></li>";
-            $('#locaties_list').html(
+            locations += "<li class='locations_item'><a class='loclink' href='locatie.html?id="+item.id+"'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.code+"</h3></a></li>";
+            $('#locations_list').html(
                 "<ul>"+locations+"</ul>"
             );
         });
-        //hover for locations menu
-        /*$(".locaties_item").on('mouseover',function(){
-            $(this).css({"background-color":"#2056A4"});
-            $(this).find('a').css({"color":"white"});
-            $(this).css({"background-image":"url(images/arrowright_w.png)"});
-            var src = $(this).find('img').attr('src');
-            switch(src){
-            case 'images/loc1_bl.png':
-                $(this).find('img').attr('src','images/loc1.png');    
-            break; 
-            case 'images/loc2_bl.png':
-                $(this).find('img').attr('src','images/loc2.png');     
-            break;
-            case 'images/loc3_bl.png':
-                $(this).find('img').attr('src','images/loc3.png');     
-            break;
-            case 'images/loc4_bl.png':
-                $(this).find('img').attr('src','images/loc4.png');     
-            break;
-            case 'images/loc5_bl.png':
-                $(this).find('img').attr('src','images/loc5.png');     
-            break;
-            case 'images/loc6_bl.png':
-                $(this).find('img').attr('src','images/loc6.png');     
-            break;
-            case 'images/loc7_bl.png':
-                $(this).find('img').attr('src','images/loc7.png');     
-            break;
-            case 'images/loc8_bl.png':
-                $(this).find('img').attr('src','images/loc8.png');     
-            break;        
-            }
-        });
-
-        $(".locaties_item").on('mouseout',function(){
-            $(this).css({"background-color":"#fff"});
-            $(this).css({"background-image":"url(images/arrowright.png)"});
-            $(this).find('a').css({"color":"#2056A4"});
-            var src = $(this).find('img').attr('src');
-            switch(src){
-            case 'images/loc1.png':
-                $(this).find('img').attr('src','images/loc1_bl.png');    
-            break; 
-            case 'images/loc2.png':
-                $(this).find('img').attr('src','images/loc2_bl.png');     
-            break;
-            case 'images/loc3.png':
-                $(this).find('img').attr('src','images/loc3_bl.png');     
-            break;
-            case 'images/loc4.png':
-                $(this).find('img').attr('src','images/loc4_bl.png');     
-            break;
-            case 'images/loc5.png':
-                $(this).find('img').attr('src','images/loc5_bl.png');     
-            break;
-            case 'images/loc6.png':
-                $(this).find('img').attr('src','images/loc6_bl.png');     
-            break;
-            case 'images/loc7.png':
-                $(this).find('img').attr('src','images/loc7_bl.png');     
-            break;
-            case 'images/loc8.png':
-                $(this).find('img').attr('src','images/loc8_bl.png');     
-            break;        
-            }
-        });*/
         $(".mapcontainer").trigger('update', [updatedOptions, newPlots, deletedPlots, {animDuration : 1000}]);
     }
     
     //3.
     //menu animatie
-    var locationList = $('#locaties_list');
-    var locationHead = $('.locaties_header');
+    var locationList = $('#locations_list');
+    var locationHead = $('.locations_header');
     locationList.hide();
     locationHead.on('click', function(){
-        console.log('click');
         if(locationHead.hasClass('active')) {
             locationList.slideUp('slow', function(){});
             $(this).removeClass('active'); 
@@ -226,12 +159,6 @@ $(document).ready(function(){
         var d = R * c; // Distance in km
         console.log(d);
     }
-    
-    //Click events
-    $("#clickContent").on('click', 'a.closeBtn', function(e){
-        $('#clickContent').html("");
-        return false;
-    });
     
     //Initial functions to be loaded
     getLocation();

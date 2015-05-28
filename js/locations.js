@@ -8,9 +8,9 @@ function locInfo(jsonObject, pos,id){
     var locImage = loc.image;
     var art = "";
           
-    $('.locatie_header h2').html(locNaam);
-    $('#adres').html(locAdres);
-    $('#beschrijving').html(locDescr);
+    $('.location_header h2').html(locNaam);
+    $('#location_address').html(locAdres);
+    $('#location_description').html(locDescr);
 
     $.each(loc.artworks, function(a, artwork) {
       art += "<li>"+
@@ -22,33 +22,7 @@ function locInfo(jsonObject, pos,id){
              "</li>";
     });    
     $('.art_lists').html("<ul>"+art+"</ul>");
-            
-    switch(id){
-        case '1':
-            $('#locImage').attr('src','images/loc1.png');    
-        break; 
-        case '2':
-            $('#locImage').attr('src','images/loc2.png');     
-        break;
-        case '3':
-            $('#locImage').attr('src','images/loc3.png');     
-        break;
-        case '4':
-            $('#locImage').attr('src','images/loc4.png');     
-        break;
-        case '5':
-            $('#locImage').attr('src','images/loc5.png');     
-        break;
-        case '6':
-            $('#locImage').attr('src','images/loc6.png');     
-        break;
-        case '7':
-            $('#locImage').attr('src','images/loc7.png');     
-        break;
-        case '8':
-            $('#locImage').attr('src','images/loc8.png');     
-        break;        
-    }
+    $('.location_number').html("[<span>" + id + "</span>]");
 }
 
 function getUrlVars() {
