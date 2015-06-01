@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    console.log('Version 0.5.1');
+    console.log('Version 0.5.2');
     
     //Variables
     var executed = false;
+    var locationCoords = [];
     
     //Map initializer
     $(".mapcontainer").mapael({
@@ -96,6 +97,9 @@ $(document).ready(function(){
         } else {
             var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
             handleLocations(jsonObject);
+            $.each(jsonObject, function(i, item) {
+                 locationCoords.push({id: item.id, lat: item.lat, long: item.long});
+            });
         }
     } else {
         alert('Could not be cached');
@@ -129,7 +133,9 @@ $(document).ready(function(){
             if($('.mapcontainer')) {
                 updatePosition(currentLat, currentLong);
             }
-            calcDistance(currentLat, 51.0288, currentLong, 4.479);
+            $.each(locationCoords, function(i, item) {
+                calcDistance(currentLat, currentLong, item);
+            });
     }
     
     function getLocation() {
@@ -148,16 +154,18 @@ $(document).ready(function(){
     function toRad(Value) {
         return Value * Math.PI / 180;
     }
-    function calcDistance(lat1, lat2, lng1, lng2) {
+    function calcDistance(lat, lng, location) {
         var R = 6371000; // Radius of earth in km
-        var dLat = toRad(lat2-lat1);
-        var dLon = toRad(lng2-lng1); 
+        var dLat = toRad(location.lat-lat);
+        var dLon = toRad(location.long-lng); 
         var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * 
+        Math.cos(toRad(lat)) * Math.cos(toRad(location.lat)) * 
         Math.sin(dLon/2) * Math.sin(dLon/2); 
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
         var d = R * c; // Distance in km
-        console.log(d);
+        if(d < 700) {
+            console.log(d + " - " + location.id);   
+        }
     }
     
     //Initial functions to be loaded
