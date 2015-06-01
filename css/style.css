@@ -5,12 +5,18 @@ html, body {
 .flexcontainer {
   height: 100%;
   max-height: 100%; }
-  .flexcontainer .apptitle {
+  .flexcontainer h1 {
     text-align: center;
     color: #2056A4;
     font-weight: 700;
     padding: 15px 0px;
     margin: 0 auto; }
+  .flexcontainer .apptitle {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    background-color: white;
+    z-index: 5; }
   .flexcontainer .controls {
     position: absolute;
     top: 0px;
@@ -61,10 +67,10 @@ html, body {
     margin: 0 auto; }
     .flexcontainer .datacontainer .location_number {
       width: 25px;
-      font-size: 1.4rem;
+      font-size: 1rem;
       font-weight: bold; }
       .flexcontainer .datacontainer .location_number span {
-        font-size: 1rem;
+        font-size: 0.7rem;
         vertical-align: middle;
         padding: 0 1px; }
     .flexcontainer .datacontainer .locations {
@@ -110,25 +116,39 @@ html, body {
               text-transform: uppercase;
               font-weight: 400;
               padding-left: 20px;
-              width: 70%; }
+              width: 70%;
+              font-size: 0.8rem; }
     .flexcontainer .datacontainer .location .location_header {
       background-color: #2056A4;
-      color: #fff;
       margin: 0 auto;
       text-align: center;
       padding: 10px 0px; }
-      .flexcontainer .datacontainer .location .location_header p {
-        width: 25px;
-        display: inline-block;
-        vertical-align: middle; }
-      .flexcontainer .datacontainer .location .location_header h2 {
-        text-transform: uppercase;
-        display: inline-block;
-        vertical-align: middle;
-        padding-left: 10px;
-        font-weight: 400; }
+      .flexcontainer .datacontainer .location .location_header a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        background-image: url("../images/arrowleft_w.png");
+        background-repeat: no-repeat;
+        background-position: 5% center;
+        background-size: 15px; }
+        .flexcontainer .datacontainer .location .location_header a p {
+          width: 25px;
+          display: inline-block;
+          vertical-align: middle; }
+        .flexcontainer .datacontainer .location .location_header a h2 {
+          text-transform: uppercase;
+          display: inline-block;
+          vertical-align: middle;
+          padding-left: 10px;
+          font-weight: 400;
+          font-size: 0.8rem; }
     .flexcontainer .datacontainer .location .location_info {
-      padding: 20px 10px 0px 10px; }
+      padding: 20px 10px 0px 10px;
+      margin: 10px 0px 15px 0px;
+      font-size: 0.9rem;
+      line-height: 1rem;
+      letter-spacing: 0.3px; }
       .flexcontainer .datacontainer .location .location_info img {
         width: 110px;
         height: 80px;
@@ -143,38 +163,60 @@ html, body {
         padding-top: 10px;
         font-weight: 700;
         color: #2056A4; }
-      .flexcontainer .datacontainer .location .location_info .location_info {
-        margin: 10px 0px 15px 0px;
-        font-size: 0.9rem;
-        line-height: 1rem;
-        letter-spacing: 0.3px; }
+      .flexcontainer .datacontainer .location .location_info #location_description {
+        font-size: 0.8rem;
+        padding-top: 10px; }
     .flexcontainer .datacontainer .location .art_lists {
       padding: 20px 10px 10px 10px; }
       .flexcontainer .datacontainer .location .art_lists ul li {
-        padding-bottom: 10px; }
+        display: block;
+        padding-bottom: 10px;
+        background-image: url(../images/arrowright.png);
+        background-position: right center;
+        background-size: 15px;
+        background-repeat: no-repeat; }
         .flexcontainer .datacontainer .location .art_lists ul li img {
           width: 60px;
           height: 60px;
           background-color: #2056A4;
           display: inline-block;
           vertical-align: middle; }
-        .flexcontainer .datacontainer .location .art_lists ul li div {
+        .flexcontainer .datacontainer .location .art_lists ul li a {
           display: inline-block;
           font-size: 0.7rem;
           line-height: 1rem;
           vertical-align: middle;
           width: 60%;
-          padding-left: 20px; }
-          .flexcontainer .datacontainer .location .art_lists ul li div h3 {
+          padding-left: 20px;
+          text-decoration: none;
+          color: #000; }
+          .flexcontainer .datacontainer .location .art_lists ul li a h3 {
             text-transform: uppercase;
             font-weight: bolder; }
 
 @media only screen and (min-width: 350px) {
+  .flexcontainer .datacontainer .location_number {
+    font-size: 1.4rem; }
+    .flexcontainer .datacontainer .location_number span {
+      font-size: 1rem; }
   .flexcontainer .datacontainer .locations .locations_header h2 {
     background-position: 98% center; }
+  .flexcontainer .datacontainer .locations #locations_list li a h3 {
+    font-size: 1rem; }
+  .flexcontainer .datacontainer .location .location_header a {
+    background-size: 18px; }
+    .flexcontainer .datacontainer .location .location_header a h2 {
+      font-size: 100%; }
+    .flexcontainer .datacontainer .location .location_header a img {
+      width: 15px;
+      padding-right: 20px; }
   .flexcontainer .datacontainer .location .location_info #location_address {
     display: inline-block;
-    padding-left: 10px; } }
+    padding-left: 10px; }
+  .flexcontainer .datacontainer .location .location_info #location_description {
+    font-size: 0.9rem; }
+  .flexcontainer .datacontainer .location .art_lists ul li {
+    background-size: 18px; } }
 @media only screen and (min-width: 480px) {
   .flexcontainer .datacontainer .locations .locations_header h2 {
     background-position: 96% center; } }
