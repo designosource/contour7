@@ -1,5 +1,7 @@
 //4.
-//aparte locatie selecteren    
+//aparte locatie selecteren  
+var idLoc;
+
 function locInfo(jsonObject, pos,id){
     var loc = jsonObject[pos];
     var locNaam = loc.name_nl;
@@ -7,18 +9,20 @@ function locInfo(jsonObject, pos,id){
     var locDescr = loc.description_nl;
     var locImage = loc.image;
     var art = "";
+    var artID = 0;
           
     $('.location_header h2').html(locNaam);
     $('#location_address').html(locAdres);
     $('#location_description').html(locDescr);
 
     $.each(loc.artworks, function(a, artwork) {
+      artID += 1    
       art += "<li>"+
              "<img src='"+artwork.image+"'>"+
-             "<div>"+
+             "<a href='kunstwerk.html?id="+idLoc+"&art="+artID+"'>"+
                 "<h3>"+artwork.name_nl+"</h3>"+
                 "<p>"+artwork.artist['name']+"</p>"+
-             "</div>"+
+             "</a>"+
              "</li>";
     });    
     $('.art_lists').html("<ul>"+art+"</ul>");
@@ -38,8 +42,8 @@ if(typeof(Storage) !== "undefined") {
         window.location="/";
     } else {
         var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
-
-        var idLoc = getUrlVars()["id"];
+        console.log(jsonObject);
+        idLoc = getUrlVars()["id"];
         if( idLoc != "") {
             var pos = idLoc - 1;
             locInfo(jsonObject, pos,idLoc); 

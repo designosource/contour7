@@ -64,7 +64,7 @@ $(document).ready(function(){
             
             //2. Locations Menu
             //Get all locations
-            locations += "<li class='locations_item'><a class='loclink' href='locatie.html?id="+item.id+"'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.code+"</h3></a></li>";
+            locations += "<li class='locations_item'><a class='loclink' href='locatie.html?id="+item.id+"'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
             $('#locations_list').html(
                 "<ul>"+locations+"</ul>"
             );
