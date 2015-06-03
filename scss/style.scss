@@ -1,5 +1,6 @@
 $blue: #2056A4;
 $white: #fff;
+$grey: #d8dde6;
 
 html, body {
     height: 100%;
@@ -96,7 +97,8 @@ h1 {
 max-width: 525px;
 width: 100%;
 margin: 0 auto;  
-    .location_number
+    .location_number,
+    .loc_number
     {
     width: 25px;
     font-size: 1rem;
@@ -174,7 +176,9 @@ margin: 0 auto;
     }
     .location
     {
-      
+      position: absolute;
+      top: 46px;
+      background-color: $white;    
       .location_header {
       background-color: $blue;
       margin: 0 auto;
@@ -198,7 +202,6 @@ margin: 0 auto;
               text-transform: uppercase;  
               display: inline-block;
               vertical-align: middle;
-              padding-left: 10px;
               font-weight: 400;
               font-size: 0.8rem;    
             }  
@@ -206,11 +209,12 @@ margin: 0 auto;
           }
       }
       .location_info {
-        padding: 20px 10px 0px 10px;
+        padding: 20px 10px 30px 10px;
         margin: 10px 0px 15px 0px;
         font-size: 0.9rem;
         line-height: 1rem;  
-        letter-spacing: 0.3px;  
+        letter-spacing: 0.3px; 
+        border-bottom: 1px solid $grey;  
         img {
           width: 110px;
           height: 80px;
@@ -257,7 +261,10 @@ margin: 0 auto;
               width: 60%;
               padding-left: 20px;
               text-decoration: none;
-              color: #000;    
+              color: #000;
+              &:hover {
+                color: $blue;
+              }    
                 
               h3 {
                 text-transform: uppercase;
@@ -266,6 +273,79 @@ margin: 0 auto;
               //letter-spacing: 0.3px;    
             }  
           }
+        }  
+      }    
+    }
+    
+    .artwork {
+      .artwork_header {
+          background-color: $blue;
+          margin: 0 auto;
+          text-align: center;
+          padding: 10px 0px;      
+              a {
+                color: $white;
+                text-decoration: none;
+                display: block;
+                width: 100%;
+                background-image: url('../images/arrowleft_w.png');
+                background-repeat: no-repeat;
+                background-position: 5% center;  
+                background-size: 15px;  
+                h2 {
+                  text-transform: uppercase;  
+                  display: inline-block;
+                  vertical-align: middle;
+                  font-weight: 400;
+                  font-size: 0.8rem;    
+                }  
+
+              }
+      }
+      .artwork_info {
+        .artist_info {
+          padding: 20px 10px 30px 10px;
+          margin: 10px 0px 15px 0px;
+          font-size: 0.9rem;
+          line-height: 1rem;  
+          letter-spacing: 0.3px; 
+          border-bottom: 1px solid $grey;   
+          img {
+            width: 70px;
+            height: 70px;
+            background-color: $blue; 
+            display: inline-block;
+            vertical-align: middle;
+          }
+          .artist {
+            display: inline-block;
+            font-weight: 700;
+            vertical-align: middle;
+            font-size: 0.7rem;
+            padding-left: 10px;  
+            li {
+              padding: 2px 0px;
+            }  
+            span {
+              font-weight: 400;
+            }  
+          }    
+        }
+      }
+      .artwork_desc {
+        padding: 20px 10px 20px 10px;
+        .artwork_title {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding-bottom: 30px;
+        }  
+        audio {
+          width: 100%;
+        }  
+        .artwork_text {
+          padding-top: 20px;
+          font-size: 0.8rem;    
         }  
       }    
     }
@@ -335,6 +415,34 @@ and (min-width : 350px) {
               }
           }
       }
+          
+      .artwork
+        {
+          .artwork_header {
+              a {  
+                background-size: 18px;  
+                h2 {
+                  font-size: 100%;
+                }
+                img {
+                  width: 15px;
+                  padding-right: 20px;
+                }
+            }
+          }
+          .artwork_info {
+            .artist_info {
+              font-size: 1.1rem;
+              .artist {
+                font-size: 0.9rem;
+                padding-left: 18px;  
+                li {
+                  padding: 2px 0px;
+                } 
+              }    
+            }
+          }    
+        }
     }
   }
 }
@@ -356,10 +464,33 @@ and (min-width : 480px) {
         .location
         {
           .location_info {
+            padding: 30px 30px 30px 30px;  
             #location_address {    
             }
           }
+          .art_lists {
+            padding: 20px 30px 20px 30px;  
+          }    
         }
+          
+        .artwork
+        {
+          .artwork_info {
+            .artist_info {
+              padding: 20px 30px 30px 30px;    
+              .artist {
+                font-size: 0.9rem;
+                padding-left: 25px; 
+              }    
+            }
+          }
+          .artwork_desc {
+            padding: 20px 30px 20px 30px;  
+            .artwork_title {
+              font-size: 0.8rem;
+            }  
+          }    
+        }  
       }
     }
 

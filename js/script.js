@@ -64,7 +64,7 @@ $(document).ready(function(){
             
             //2. Locations Menu
             //Get all locations
-            locations += "<li class='locations_item'><a class='loclink' href='locatie.html?id="+item.id+"'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
+            locations += "<li class='locations_item' id="+item.id+"><a class='loclink'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
             $('#locations_list').html(
                 "<ul>"+locations+"</ul>"
             );
@@ -89,7 +89,7 @@ $(document).ready(function(){
             $(this).find('h2').css("background-image","url(images/arrow-down.png)");
         }
     
-    });    
+    });
     
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('jsondata') === null) {

@@ -65,11 +65,13 @@ html, body {
     max-width: 525px;
     width: 100%;
     margin: 0 auto; }
-    .flexcontainer .datacontainer .location_number {
+    .flexcontainer .datacontainer .location_number,
+    .flexcontainer .datacontainer .loc_number {
       width: 25px;
       font-size: 1rem;
       font-weight: bold; }
-      .flexcontainer .datacontainer .location_number span {
+      .flexcontainer .datacontainer .location_number span,
+      .flexcontainer .datacontainer .loc_number span {
         font-size: 0.7rem;
         vertical-align: middle;
         padding: 0 1px; }
@@ -118,12 +120,93 @@ html, body {
               padding-left: 20px;
               width: 70%;
               font-size: 0.8rem; }
-    .flexcontainer .datacontainer .location .location_header {
+    .flexcontainer .datacontainer .location {
+      position: absolute;
+      top: 46px;
+      background-color: #fff; }
+      .flexcontainer .datacontainer .location .location_header {
+        background-color: #2056A4;
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px 0px; }
+        .flexcontainer .datacontainer .location .location_header a {
+          color: #fff;
+          text-decoration: none;
+          display: block;
+          width: 100%;
+          background-image: url("../images/arrowleft_w.png");
+          background-repeat: no-repeat;
+          background-position: 5% center;
+          background-size: 15px; }
+          .flexcontainer .datacontainer .location .location_header a p {
+            width: 25px;
+            display: inline-block;
+            vertical-align: middle; }
+          .flexcontainer .datacontainer .location .location_header a h2 {
+            text-transform: uppercase;
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: 400;
+            font-size: 0.8rem; }
+      .flexcontainer .datacontainer .location .location_info {
+        padding: 20px 10px 30px 10px;
+        margin: 10px 0px 15px 0px;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        letter-spacing: 0.3px;
+        border-bottom: 1px solid #d8dde6; }
+        .flexcontainer .datacontainer .location .location_info img {
+          width: 110px;
+          height: 80px;
+          background-color: #2056A4;
+          display: inline-block; }
+        .flexcontainer .datacontainer .location .location_info #location_address {
+          position: relative;
+          bottom: 2px;
+          font-size: 0.9rem;
+          line-height: 1.2rem;
+          letter-spacing: 0.3px;
+          padding-top: 10px;
+          font-weight: 700;
+          color: #2056A4; }
+        .flexcontainer .datacontainer .location .location_info #location_description {
+          font-size: 0.8rem;
+          padding-top: 10px; }
+      .flexcontainer .datacontainer .location .art_lists {
+        padding: 20px 10px 10px 10px; }
+        .flexcontainer .datacontainer .location .art_lists ul li {
+          display: block;
+          padding-bottom: 10px;
+          background-image: url(../images/arrowright.png);
+          background-position: right center;
+          background-size: 15px;
+          background-repeat: no-repeat; }
+          .flexcontainer .datacontainer .location .art_lists ul li img {
+            width: 60px;
+            height: 60px;
+            background-color: #2056A4;
+            display: inline-block;
+            vertical-align: middle; }
+          .flexcontainer .datacontainer .location .art_lists ul li a {
+            display: inline-block;
+            font-size: 0.7rem;
+            line-height: 1rem;
+            vertical-align: middle;
+            width: 60%;
+            padding-left: 20px;
+            text-decoration: none;
+            color: #000; }
+            .flexcontainer .datacontainer .location .art_lists ul li a:hover {
+              color: #2056A4; }
+            .flexcontainer .datacontainer .location .art_lists ul li a h3 {
+              text-transform: uppercase;
+              font-weight: bolder; }
+    .flexcontainer .datacontainer .artwork .artwork_header {
       background-color: #2056A4;
       margin: 0 auto;
       text-align: center;
       padding: 10px 0px; }
-      .flexcontainer .datacontainer .location .location_header a {
+      .flexcontainer .datacontainer .artwork .artwork_header a {
         color: #fff;
         text-decoration: none;
         display: block;
@@ -132,67 +215,47 @@ html, body {
         background-repeat: no-repeat;
         background-position: 5% center;
         background-size: 15px; }
-        .flexcontainer .datacontainer .location .location_header a p {
-          width: 25px;
-          display: inline-block;
-          vertical-align: middle; }
-        .flexcontainer .datacontainer .location .location_header a h2 {
+        .flexcontainer .datacontainer .artwork .artwork_header a h2 {
           text-transform: uppercase;
           display: inline-block;
           vertical-align: middle;
-          padding-left: 10px;
           font-weight: 400;
           font-size: 0.8rem; }
-    .flexcontainer .datacontainer .location .location_info {
-      padding: 20px 10px 0px 10px;
+    .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
+      padding: 20px 10px 30px 10px;
       margin: 10px 0px 15px 0px;
       font-size: 0.9rem;
       line-height: 1rem;
-      letter-spacing: 0.3px; }
-      .flexcontainer .datacontainer .location .location_info img {
-        width: 110px;
-        height: 80px;
+      letter-spacing: 0.3px;
+      border-bottom: 1px solid #d8dde6; }
+      .flexcontainer .datacontainer .artwork .artwork_info .artist_info img {
+        width: 70px;
+        height: 70px;
         background-color: #2056A4;
-        display: inline-block; }
-      .flexcontainer .datacontainer .location .location_info #location_address {
-        position: relative;
-        bottom: 2px;
-        font-size: 0.9rem;
-        line-height: 1.2rem;
-        letter-spacing: 0.3px;
-        padding-top: 10px;
+        display: inline-block;
+        vertical-align: middle; }
+      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
+        display: inline-block;
         font-weight: 700;
-        color: #2056A4; }
-      .flexcontainer .datacontainer .location .location_info #location_description {
-        font-size: 0.8rem;
-        padding-top: 10px; }
-    .flexcontainer .datacontainer .location .art_lists {
-      padding: 20px 10px 10px 10px; }
-      .flexcontainer .datacontainer .location .art_lists ul li {
-        display: block;
-        padding-bottom: 10px;
-        background-image: url(../images/arrowright.png);
-        background-position: right center;
-        background-size: 15px;
-        background-repeat: no-repeat; }
-        .flexcontainer .datacontainer .location .art_lists ul li img {
-          width: 60px;
-          height: 60px;
-          background-color: #2056A4;
-          display: inline-block;
-          vertical-align: middle; }
-        .flexcontainer .datacontainer .location .art_lists ul li a {
-          display: inline-block;
-          font-size: 0.7rem;
-          line-height: 1rem;
-          vertical-align: middle;
-          width: 60%;
-          padding-left: 20px;
-          text-decoration: none;
-          color: #000; }
-          .flexcontainer .datacontainer .location .art_lists ul li a h3 {
-            text-transform: uppercase;
-            font-weight: bolder; }
+        vertical-align: middle;
+        font-size: 0.7rem;
+        padding-left: 10px; }
+        .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
+          padding: 2px 0px; }
+        .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist span {
+          font-weight: 400; }
+    .flexcontainer .datacontainer .artwork .artwork_desc {
+      padding: 20px 10px 20px 10px; }
+      .flexcontainer .datacontainer .artwork .artwork_desc .artwork_title {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding-bottom: 30px; }
+      .flexcontainer .datacontainer .artwork .artwork_desc audio {
+        width: 100%; }
+      .flexcontainer .datacontainer .artwork .artwork_desc .artwork_text {
+        padding-top: 20px;
+        font-size: 0.8rem; }
 
 @media only screen and (min-width: 350px) {
   .flexcontainer .datacontainer .location_number {
@@ -216,9 +279,36 @@ html, body {
   .flexcontainer .datacontainer .location .location_info #location_description {
     font-size: 0.9rem; }
   .flexcontainer .datacontainer .location .art_lists ul li {
-    background-size: 18px; } }
+    background-size: 18px; }
+  .flexcontainer .datacontainer .artwork .artwork_header a {
+    background-size: 18px; }
+    .flexcontainer .datacontainer .artwork .artwork_header a h2 {
+      font-size: 100%; }
+    .flexcontainer .datacontainer .artwork .artwork_header a img {
+      width: 15px;
+      padding-right: 20px; }
+  .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
+    font-size: 1.1rem; }
+    .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
+      font-size: 0.9rem;
+      padding-left: 18px; }
+      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
+        padding: 2px 0px; } }
 @media only screen and (min-width: 480px) {
   .flexcontainer .datacontainer .locations .locations_header h2 {
-    background-position: 96% center; } }
+    background-position: 96% center; }
+  .flexcontainer .datacontainer .location .location_info {
+    padding: 30px 30px 30px 30px; }
+  .flexcontainer .datacontainer .location .art_lists {
+    padding: 20px 30px 20px 30px; }
+  .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
+    padding: 20px 30px 30px 30px; }
+    .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
+      font-size: 0.9rem;
+      padding-left: 25px; }
+  .flexcontainer .datacontainer .artwork .artwork_desc {
+    padding: 20px 30px 20px 30px; }
+    .flexcontainer .datacontainer .artwork .artwork_desc .artwork_title {
+      font-size: 0.8rem; } }
 
 /*# sourceMappingURL=style.css.map */
