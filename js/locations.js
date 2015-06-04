@@ -41,15 +41,11 @@ if(typeof(Storage) !== "undefined") {
     if (localStorage.getItem('contour_data') === null) {
         window.location="/";
     } else {
-<<<<<<< HEAD
         var jsonObject = JSON.parse(localStorage.getItem('contour_data'));
-
         var idLoc = getUrlVars()["id"];
-=======
         var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
         console.log(jsonObject);
         idLoc = getUrlVars()["id"];
->>>>>>> 0058bad0340d27bcb3be2cf521dad27184402671
         if( idLoc != "") {
             var pos = idLoc - 1;
             locInfo(jsonObject, pos,idLoc); 
