@@ -16,20 +16,24 @@
     <script type="text/javascript" src="js/jquery-latest.min.js"></script>
     <script type="text/javascript">
         if(typeof(Storage) !== "undefined") {
-            if (localStorage.getItem('jsondata') === null) {
+            if (localStorage.getItem('contour_data')) {
+                window.location="/map.html";
+            } else {
+                var uidTimestamp = new Date().getTime();
+                var uidNumber = Math.floor(Math.random() * 900000) + 100000;
+                var uid = uidTimestamp+uidNumber;
+                localStorage.setItem('contour_uid', uid.toString(16));
                 $.ajax({
                     url: "http://preview-app.contour7.be/gateway/programme/complete",
                     type: 'GET',
                     success: function (resp) {
-                        localStorage.setItem('jsondata', JSON.stringify(resp));
+                        localStorage.setItem('contour_data', JSON.stringify(resp));
                     },
                     error: function(e) {
                         console.log('Error: '+e);
                     }  
                 });
                 console.log('Json cached');
-            } else {
-                console.log('Already cached');
             }
         } else {
             alert('Could not be cached');

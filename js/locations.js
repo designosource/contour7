@@ -34,10 +34,10 @@ function getUrlVars() {
 }
 
 if(typeof(Storage) !== "undefined") {
-    if (localStorage.getItem('jsondata') === null) {
+    if (localStorage.getItem('contour_data') === null) {
         window.location="/";
     } else {
-        var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
+        var jsonObject = JSON.parse(localStorage.getItem('contour_data'));
 
         var idLoc = getUrlVars()["id"];
         if( idLoc != "") {

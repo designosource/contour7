@@ -92,14 +92,14 @@ $(document).ready(function(){
     });    
     
     if(typeof(Storage) !== "undefined") {
-        if (localStorage.getItem('jsondata') === null) {
-            window.location="/";
-        } else {
-            var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
+        if (localStorage.getItem('contour_data')) {
+            var jsonObject = JSON.parse(localStorage.getItem('contour_data'));
             handleLocations(jsonObject);
             $.each(jsonObject, function(i, item) {
                  locationCoords.push({id: item.id, lat: item.lat, long: item.long});
             });
+        } else {
+            window.location="/";
         }
     } else {
         alert('Could not be cached');
@@ -150,6 +150,35 @@ $(document).ready(function(){
         }
     }
     
+    function getDateTime() {
+        var datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        return datetime;
+    }
+    function savePersonData(location) {
+        $.ajax({
+            type: "POST",
+            url: "ajax/addperson.php",
+            data: {person_id: localStorage.getItem('contour_uid'), location_id: location.id, start_time: getDateTime()},
+            dataType: "json"
+        })
+        .done(function( data ){
+            if(data) {
+                localStorage.setItem('contour_currentLocation', JSON.stringify({record_id: data, location_id: location.id}));
+            }
+        });
+    }
+    function updateData(currentLocation) {
+        $.ajax({
+            type: "POST",
+            url: "ajax/updateperson.php",
+            data: {person_id: localStorage.getItem('contour_uid'), record_id: currentLocation.record_id, location_id: currentLocation.location_id, end_time: getDateTime()},
+            dataType: "json"
+        })
+        .done(function( data ){
+            localStorage.removeItem('contour_currentLocation');
+        });
+    }
+    
     //Calculate distance
     function toRad(Value) {
         return Value * Math.PI / 180;
@@ -163,8 +192,15 @@ $(document).ready(function(){
         Math.sin(dLon/2) * Math.sin(dLon/2); 
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
         var d = R * c; // Distance in km
-        if(d < 700) {
-            console.log(d + " - " + location.id);   
+        console.log(d);
+        if(d < 30) {
+            savePersonData(location);
+        } else {
+            if (localStorage.getItem('contour_currentLocation')) {
+                var currentLocation = localStorage.getItem('contour_currentLocation');
+                currentLocation = JSON.parse(currentLocation);
+                updateData(currentLocation);
+            }
         }
     }
     
