@@ -4,6 +4,7 @@ $(document).ready(function(){
     //Variables
     var executed = false;
     var locationCoords = [];
+    var jsonObject;
     
     //Map initializer
     $(".mapcontainer").mapael({
@@ -58,6 +59,10 @@ $(document).ready(function(){
                 eventHandlers: {
                     'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
                         //window.location = "locatie.html?id="+item.id;
+                        idLoc= item.id;
+                        pos = idLoc - 1;
+                        locInfo(jsonObject, pos,idLoc);
+                        locAnimate();
                     }
                 }
             };
@@ -78,25 +83,96 @@ $(document).ready(function(){
     var locationHead = $('.locations_header');
     locationList.hide();
     locationHead.on('click', function(){
-        if(locationHead.hasClass('active')) {
-            locationList.slideUp('slow', function(){});
-            $(this).removeClass('active'); 
-            $(this).find('h2').css("background-image","url(images/arrow-up.png)");
-        }
-        else {
-            locationList.slideDown('slow', function(){});
-            $(this).addClass('active'); 
-            $(this).find('h2').css("background-image","url(images/arrow-down.png)");
-        }
-    
+        menuAnimate(locationHead);
     });
+
+    function menuAnimate(head){
+        if(locationHead.hasClass('active')) {
+                locationList.slideUp('slow', function(){});
+                head.removeClass('active'); 
+                head.find('h2').css("background-image","url(images/arrow-up.png)");
+            }
+            else {
+                locationList.slideDown('slow', function(){});
+                head.addClass('active'); 
+                head.find('h2').css("background-image","url(images/arrow-down.png)");
+            }
+    }
+    
+    //4.
+    //aparte locatie selecteren
+    var idLoc;
+    var pos;
+    var locationList = $('#locations_list');
+    var locationHead = $('.locations_header');    
+
+    function locInfo(jsonObject, pos,id){
+        var loc = jsonObject[pos];
+        var locNaam = loc.name_nl;
+        console.log(loc);
+        var locAdres = loc.address_nl;
+        var locDescr = loc.description_nl;
+        var locImage = loc.image;
+        var art = "";
+        var artID = 0;
+
+        $('.location_header h2').html(locNaam);
+        $('#location_address').html(locAdres);
+        $('#location_description').html(locDescr);
+
+        $.each(loc.artworks, function(a, artwork) {
+          artID += 1    
+          art += "<li class='click' id="+artID+">"+
+                 "<img src='"+artwork.image+"'>"+
+                 "<a>"+
+                    "<h3>"+artwork.name_nl+"</h3>"+
+                    "<p>"+artwork.artist['name']+"</p>"+
+                 "</a>"+
+                 "</li>";
+        });    
+        $('.art_lists').html("<ul>"+art+"</ul>");
+        $('.loc_number').html("[<span>" + id + "</span>]");
+    }
+
+    //slide in view animation function
+    $('.location').hide();  
+    function locAnimate(){
+       $('.location').show();
+       $('.datacontainer').css('zIndex', '20');    
+       $('.location').animate({
+            left: "0"
+        }, 1000, function() {
+        // Animation complete.
+        });    
+    } 
+
+    //slide back out of view on click
+    $('.location_header').on('click', function(){
+        $( ".location" ).animate({
+            left: '100%'
+        }, 1000, function() {
+        // Animation complete.
+            $('.location').hide();
+            $('.datacontainer').css('zIndex', '-20');
+        });
+
+    });   
     
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('contour_data')) {
-            var jsonObject = JSON.parse(localStorage.getItem('contour_data'));
+            jsonObject = JSON.parse(localStorage.getItem('contour_data'));
             handleLocations(jsonObject);
             $.each(jsonObject, function(i, item) {
-                 locationCoords.push({id: item.id, lat: item.lat, long: item.long});
+                 locationCoords.push({id: item.id, lat: item.lat, long: item.long});    
+            });
+            //4.navigation to location detail start
+            $('.locations_item').on('click', function(){
+            idLoc = $(this).attr('id');
+            console.log(idLoc);
+            pos = idLoc - 1; 
+            locInfo(jsonObject, pos,idLoc); 
+            menuAnimate(locationHead);
+            locAnimate();
             });
         } else {
             window.location="/";

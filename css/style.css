@@ -219,71 +219,84 @@ html, body {
             .flexcontainer .datacontainer .location .art_lists ul li a h3 {
               text-transform: uppercase;
               font-weight: bolder; }
-    .flexcontainer .datacontainer .artwork .artwork_header {
-      background-color: #2056A4;
-      margin: 0 auto;
-      text-align: center;
-      padding: 10px 0px; }
-      .flexcontainer .datacontainer .artwork .artwork_header a {
-        color: #fff;
-        text-decoration: none;
-        display: block;
-        width: 100%;
-        background-image: url("../images/arrowleft_w.png");
-        background-repeat: no-repeat;
-        background-position: 5% center;
-        background-size: 15px; }
-        .flexcontainer .datacontainer .artwork .artwork_header a h2 {
-          text-transform: uppercase;
-          display: inline-block;
-          vertical-align: middle;
-          font-weight: 400;
-          font-size: 0.8rem; }
-    .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
-      padding: 20px 10px 30px 10px;
-      margin: 10px 0px 15px 0px;
-      font-size: 0.9rem;
-      line-height: 1rem;
-      letter-spacing: 0.3px;
-      border-bottom: 1px solid #d8dde6; }
-      .flexcontainer .datacontainer .artwork .artwork_info .artist_info img {
-        width: 70px;
-        height: 70px;
+    .flexcontainer .datacontainer .artwork {
+      position: absolute;
+      left: 100%;
+      max-width: 525px;
+      min-width: 300px;
+      height: 100%;
+      z-index: 20;
+      padding-top: 42px;
+      background-color: #fff; }
+      .flexcontainer .datacontainer .artwork .artwork_header {
         background-color: #2056A4;
-        display: inline-block;
-        vertical-align: middle; }
-      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
-        display: inline-block;
-        font-weight: 700;
-        vertical-align: middle;
-        font-size: 0.7rem;
-        padding-left: 10px; }
-        .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
-          padding: 2px 0px; }
-        .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist span {
-          font-weight: 400; }
-    .flexcontainer .datacontainer .artwork .artwork_desc {
-      padding: 20px 10px 20px 10px; }
-      .flexcontainer .datacontainer .artwork .artwork_desc .artwork_title {
-        text-transform: uppercase;
-        font-size: 0.7rem;
-        font-weight: 700;
-        padding-bottom: 30px; }
-      .flexcontainer .datacontainer .artwork .artwork_desc audio {
-        width: 100%; }
-      .flexcontainer .datacontainer .artwork .artwork_desc .artwork_text {
-        padding-top: 20px;
-        font-size: 0.8rem; }
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px 0px; }
+        .flexcontainer .datacontainer .artwork .artwork_header a {
+          color: #fff;
+          text-decoration: none;
+          display: block;
+          width: 100%;
+          background-image: url("../images/arrowleft_w.png");
+          background-repeat: no-repeat;
+          background-position: 5% center;
+          background-size: 15px; }
+          .flexcontainer .datacontainer .artwork .artwork_header a h2 {
+            text-transform: uppercase;
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: 400;
+            font-size: 0.8rem; }
+      .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
+        padding: 20px 10px 30px 10px;
+        margin: 10px 0px 15px 0px;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        letter-spacing: 0.3px;
+        border-bottom: 1px solid #d8dde6; }
+        .flexcontainer .datacontainer .artwork .artwork_info .artist_info img {
+          width: 70px;
+          height: 70px;
+          background-color: #2056A4;
+          display: inline-block;
+          vertical-align: middle; }
+        .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
+          display: inline-block;
+          font-weight: 700;
+          vertical-align: middle;
+          font-size: 0.7rem;
+          padding-left: 10px; }
+          .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
+            padding: 2px 0px; }
+          .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist span {
+            font-weight: 400; }
+      .flexcontainer .datacontainer .artwork .artwork_desc {
+        padding: 20px 10px 20px 10px; }
+        .flexcontainer .datacontainer .artwork .artwork_desc .artwork_title {
+          text-transform: uppercase;
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding-bottom: 30px; }
+        .flexcontainer .datacontainer .artwork .artwork_desc audio {
+          width: 100%; }
+        .flexcontainer .datacontainer .artwork .artwork_desc .artwork_text {
+          padding-top: 20px;
+          font-size: 0.8rem; }
 
 @media only screen and (min-width: 350px) {
-  .flexcontainer .datacontainer .location_number {
+  .flexcontainer .menu .location_number {
     font-size: 1.4rem; }
-    .flexcontainer .datacontainer .location_number span {
+    .flexcontainer .menu .location_number span {
       font-size: 1rem; }
-  .flexcontainer .datacontainer .locations .locations_header h2 {
+  .flexcontainer .menu .locations .locations_header h2 {
     background-position: 98% center; }
-  .flexcontainer .datacontainer .locations #locations_list li a h3 {
+  .flexcontainer .menu .locations #locations_list li a h3 {
     font-size: 1rem; }
+  .flexcontainer .datacontainer .loc_number {
+    font-size: 1.4rem; }
+    .flexcontainer .datacontainer .loc_number span {
+      font-size: 1rem; }
   .flexcontainer .datacontainer .location {
     min-width: 350px; }
     .flexcontainer .datacontainer .location .location_header a {
@@ -300,37 +313,41 @@ html, body {
       font-size: 0.9rem; }
     .flexcontainer .datacontainer .location .art_lists ul li {
       background-size: 18px; }
-  .flexcontainer .datacontainer .artwork .artwork_header a {
-    background-size: 18px; }
-    .flexcontainer .datacontainer .artwork .artwork_header a h2 {
-      font-size: 100%; }
-    .flexcontainer .datacontainer .artwork .artwork_header a img {
-      width: 15px;
-      padding-right: 20px; }
-  .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
-    font-size: 1.1rem; }
-    .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
-      font-size: 0.9rem;
-      padding-left: 18px; }
-      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
-        padding: 2px 0px; } }
+  .flexcontainer .datacontainer .artwork {
+    min-width: 350px; }
+    .flexcontainer .datacontainer .artwork .artwork_header a {
+      background-size: 18px; }
+      .flexcontainer .datacontainer .artwork .artwork_header a h2 {
+        font-size: 100%; }
+      .flexcontainer .datacontainer .artwork .artwork_header a img {
+        width: 15px;
+        padding-right: 20px; }
+    .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
+      font-size: 1.1rem; }
+      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
+        font-size: 0.9rem;
+        padding-left: 18px; }
+        .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
+          padding: 2px 0px; } }
 @media only screen and (min-width: 480px) {
-  .flexcontainer .datacontainer .locations .locations_header h2 {
+  .flexcontainer .menu .locations .locations_header h2 {
     background-position: 96% center; }
   .flexcontainer .datacontainer .location {
-    min-width: 480px; }
+    min-width: 470px; }
     .flexcontainer .datacontainer .location .location_info {
       padding: 30px 30px 30px 30px; }
     .flexcontainer .datacontainer .location .art_lists {
       padding: 20px 30px 20px 30px; }
-  .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
-    padding: 20px 30px 30px 30px; }
-    .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
-      font-size: 0.9rem;
-      padding-left: 25px; }
-  .flexcontainer .datacontainer .artwork .artwork_desc {
-    padding: 20px 30px 20px 30px; }
-    .flexcontainer .datacontainer .artwork .artwork_desc .artwork_title {
-      font-size: 0.8rem; } }
+  .flexcontainer .datacontainer .artwork {
+    min-width: 470px; }
+    .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
+      padding: 20px 30px 30px 30px; }
+      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
+        font-size: 0.9rem;
+        padding-left: 25px; }
+    .flexcontainer .datacontainer .artwork .artwork_desc {
+      padding: 20px 30px 20px 30px; }
+      .flexcontainer .datacontainer .artwork .artwork_desc .artwork_title {
+        font-size: 0.8rem; } }
 
 /*# sourceMappingURL=style.css.map */

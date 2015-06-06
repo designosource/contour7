@@ -7,6 +7,7 @@ $(document).ready(function(){
     var artpos;   
     console.log('ready');
 
+    //showing information    
     function artInfo(jsonObject, pos, artpos){
         var loc = jsonObject[pos];
         var art = loc.artworks[artpos];
@@ -17,15 +18,29 @@ $(document).ready(function(){
         $('.artwork_title').html(art.name_nl);
         $('.artwork_text').html(art.description_nl);
     }
-
-    /*function getUrlVars() {
-        var vars = {};
-        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-            vars[key] = value;
+    
+    //artwork animation
+    $('.artwork').hide();
+    function artAnimate(){
+      $('.artwork').show();
+      $('.artwork').css('zIndex', '25'); 
+      $('.artwork').animate({
+            left: "0"
+        }, 1000, function() {
+        // Animation complete.
+      });   
+    }
+    
+    $('.artwork_header').on('click', function(){
+        $('.artwork').animate({
+            left: '100%'
+        }, 1000, function() {
+        // Animation complete.
+            $('.artwork').hide();
+            $('.artwork').css('zIndex', '20');
         });
-        return vars;
-    }*/
-$('.artwork').hide();
+
+    });
     
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('jsondata') === null) {
@@ -41,7 +56,8 @@ $('.artwork').hide();
                 artpos = artID - 1;
                 idLoc = $('.loc_number').find('span').html();
                 pos = idLoc - 1; 
-                artInfo(jsonObject, pos,artpos); 
+                artInfo(jsonObject, pos,artpos);
+                artAnimate();
             });
         }
     } else {

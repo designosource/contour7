@@ -305,6 +305,14 @@ z-index: -20;
     }
     
     .artwork {
+      position: absolute;
+      left: 100%;
+      max-width: 525px;  
+      min-width: 300px;    
+      height: 100%;  
+      z-index: 20;  
+      padding-top: 42px;
+      background-color: $white;
       .artwork_header {
           background-color: $blue;
           margin: 0 auto;
@@ -384,9 +392,8 @@ z-index: -20;
 and (min-width : 350px) {
 
     .flexcontainer{
-      .datacontainer
-      {
-          .location_number {
+      .menu {
+        .location_number {
             font-size: 1.4rem;
             span {
               font-size: 1rem;
@@ -410,6 +417,15 @@ and (min-width : 350px) {
             }
           }
         }
+      }    
+      .datacontainer
+      {
+          .loc_number {
+            font-size: 1.4rem;
+            span {
+              font-size: 1rem;
+            }  
+          }
           
         .location
         {
@@ -444,8 +460,9 @@ and (min-width : 350px) {
           }
       }
           
-      .artwork
+      .artwork  
         {
+        min-width: 350px;
           .artwork_header {
               a {  
                 background-size: 18px;  
@@ -479,8 +496,7 @@ and (min-width : 350px) {
 and (min-width : 480px) {
 
     .flexcontainer{
-      .datacontainer
-      {
+      .menu {
         .locations {
           .locations_header {
             h2 {
@@ -488,10 +504,12 @@ and (min-width : 480px) {
             }
           }
         }
-          
+      }    
+      .datacontainer
+      {
         .location
         {
-          min-width: 480px;    
+          min-width: 470px;    
           .location_info {
             padding: 30px 30px 30px 30px;  
             #location_address {    
@@ -504,6 +522,7 @@ and (min-width : 480px) {
           
         .artwork
         {
+          min-width: 470px; 
           .artwork_info {
             .artist_info {
               padding: 20px 30px 30px 30px;    
