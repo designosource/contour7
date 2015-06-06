@@ -24,7 +24,7 @@ $(document).ready(function(){
           1. Add Locations + popup
           2. Locations Menu
           3. Menu animatie
-          4. Info per locatie*/
+          4. Info per locatie --> zit in locations.js*/
     
     //Handle JSON object
     function handleLocations(jsonObject) {
@@ -57,14 +57,14 @@ $(document).ready(function(){
                         fill : "#fff" } },
                 eventHandlers: {
                     'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
-                        window.location = "locatie.html?id="+item.id;
+                        //window.location = "locatie.html?id="+item.id;
                     }
                 }
             };
             
             //2. Locations Menu
             //Get all locations
-            locations += "<li class='locations_item'><a class='loclink' href='locatie.html?id="+item.id+"'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
+            locations += "<li class='locations_item' id="+item.id+"><a class='loclink'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
             $('#locations_list').html(
                 "<ul>"+locations+"</ul>"
             );
@@ -89,7 +89,7 @@ $(document).ready(function(){
             $(this).find('h2').css("background-image","url(images/arrow-down.png)");
         }
     
-    });    
+    });
     
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('contour_data')) {
