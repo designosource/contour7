@@ -4,7 +4,8 @@ html, body {
 
 .flexcontainer {
   height: 100%;
-  max-height: 100%; }
+  max-height: 100%;
+  overflow: hidden; }
   .flexcontainer h1 {
     text-align: center;
     color: #2056A4;
@@ -16,7 +17,8 @@ html, body {
     top: 0px;
     width: 100%;
     background-color: white;
-    z-index: 5; }
+    z-index: 100;
+    height: 2%; }
   .flexcontainer .controls {
     position: absolute;
     top: 0px;
@@ -61,68 +63,83 @@ html, body {
     overflow-y: hidden;
     overflow-x: hidden;
     margin: 0 auto; }
+  .flexcontainer .menu .location_number {
+    width: 25px;
+    font-size: 1rem;
+    font-weight: bold; }
+    .flexcontainer .menu .location_number span {
+      font-size: 0.7rem;
+      vertical-align: middle;
+      padding: 0 1px; }
+  .flexcontainer .menu .locations {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    max-width: inherit;
+    background-color: #fff; }
+    .flexcontainer .menu .locations .locations_header h2 {
+      text-transform: uppercase;
+      color: #2056A4;
+      font-weight: 700;
+      padding: 20px 20px 20px 0px;
+      margin: 0px 20px 0px 30px;
+      background-image: url(../images/arrow-up.png);
+      background-repeat: no-repeat;
+      background-position: 100% center;
+      background-size: 25px; }
+    .flexcontainer .menu .locations #locations_list {
+      background-color: #fff; }
+      .flexcontainer .menu .locations #locations_list li {
+        color: #2056A4;
+        padding: 10px 25px 10px 30px;
+        background-image: url(../images/arrowright.png);
+        background-repeat: no-repeat;
+        background-position: 91% center;
+        background-size: 12px;
+        cursor: pointer; }
+        .flexcontainer .menu .locations #locations_list li:hover {
+          background-color: #2056A4;
+          color: white;
+          background-image: url(../images/arrowright_w.png); }
+        .flexcontainer .menu .locations #locations_list li a {
+          color: inherit;
+          width: 100%;
+          display: block; }
+          .flexcontainer .menu .locations #locations_list li a p,
+          .flexcontainer .menu .locations #locations_list li a h3 {
+            vertical-align: middle;
+            display: inline-block; }
+          .flexcontainer .menu .locations #locations_list li a h3 {
+            text-transform: uppercase;
+            font-weight: 400;
+            padding-left: 20px;
+            width: 70%;
+            font-size: 0.8rem; }
   .flexcontainer .datacontainer {
+    position: absolute;
+    top: 0;
     max-width: 525px;
     width: 100%;
-    margin: 0 auto; }
-    .flexcontainer .datacontainer .location_number,
+    margin: 0 auto;
+    height: inherit;
+    overflow: auto;
+    z-index: -20; }
     .flexcontainer .datacontainer .loc_number {
       width: 25px;
       font-size: 1rem;
       font-weight: bold; }
-      .flexcontainer .datacontainer .location_number span,
       .flexcontainer .datacontainer .loc_number span {
         font-size: 0.7rem;
         vertical-align: middle;
         padding: 0 1px; }
-    .flexcontainer .datacontainer .locations {
-      position: fixed;
-      bottom: 0px;
-      width: 100%;
-      max-width: inherit;
-      z-index: 20;
-      background-color: #fff; }
-      .flexcontainer .datacontainer .locations .locations_header h2 {
-        text-transform: uppercase;
-        color: #2056A4;
-        font-weight: 700;
-        padding: 20px 20px 20px 0px;
-        margin: 0px 20px 0px 30px;
-        background-image: url(../images/arrow-up.png);
-        background-repeat: no-repeat;
-        background-position: 100% center;
-        background-size: 25px; }
-      .flexcontainer .datacontainer .locations #locations_list {
-        background-color: #fff; }
-        .flexcontainer .datacontainer .locations #locations_list li {
-          color: #2056A4;
-          padding: 10px 25px 10px 30px;
-          background-image: url(../images/arrowright.png);
-          background-repeat: no-repeat;
-          background-position: 91% center;
-          background-size: 12px;
-          cursor: pointer; }
-          .flexcontainer .datacontainer .locations #locations_list li:hover {
-            background-color: #2056A4;
-            color: white;
-            background-image: url(../images/arrowright_w.png); }
-          .flexcontainer .datacontainer .locations #locations_list li a {
-            color: inherit;
-            width: 100%;
-            display: block; }
-            .flexcontainer .datacontainer .locations #locations_list li a p,
-            .flexcontainer .datacontainer .locations #locations_list li a h3 {
-              vertical-align: middle;
-              display: inline-block; }
-            .flexcontainer .datacontainer .locations #locations_list li a h3 {
-              text-transform: uppercase;
-              font-weight: 400;
-              padding-left: 20px;
-              width: 70%;
-              font-size: 0.8rem; }
     .flexcontainer .datacontainer .location {
       position: absolute;
-      top: 46px;
+      left: 100%;
+      max-width: 525px;
+      min-width: 300px;
+      height: 100%;
+      z-index: 20;
+      padding-top: 42px;
       background-color: #fff; }
       .flexcontainer .datacontainer .location .location_header {
         background-color: #2056A4;
@@ -173,7 +190,8 @@ html, body {
           font-size: 0.8rem;
           padding-top: 10px; }
       .flexcontainer .datacontainer .location .art_lists {
-        padding: 20px 10px 10px 10px; }
+        padding: 20px 10px 10px 10px;
+        background-color: #fff; }
         .flexcontainer .datacontainer .location .art_lists ul li {
           display: block;
           padding-bottom: 10px;
@@ -266,20 +284,22 @@ html, body {
     background-position: 98% center; }
   .flexcontainer .datacontainer .locations #locations_list li a h3 {
     font-size: 1rem; }
-  .flexcontainer .datacontainer .location .location_header a {
-    background-size: 18px; }
-    .flexcontainer .datacontainer .location .location_header a h2 {
-      font-size: 100%; }
-    .flexcontainer .datacontainer .location .location_header a img {
-      width: 15px;
-      padding-right: 20px; }
-  .flexcontainer .datacontainer .location .location_info #location_address {
-    display: inline-block;
-    padding-left: 10px; }
-  .flexcontainer .datacontainer .location .location_info #location_description {
-    font-size: 0.9rem; }
-  .flexcontainer .datacontainer .location .art_lists ul li {
-    background-size: 18px; }
+  .flexcontainer .datacontainer .location {
+    min-width: 350px; }
+    .flexcontainer .datacontainer .location .location_header a {
+      background-size: 18px; }
+      .flexcontainer .datacontainer .location .location_header a h2 {
+        font-size: 100%; }
+      .flexcontainer .datacontainer .location .location_header a img {
+        width: 15px;
+        padding-right: 20px; }
+    .flexcontainer .datacontainer .location .location_info #location_address {
+      display: inline-block;
+      padding-left: 10px; }
+    .flexcontainer .datacontainer .location .location_info #location_description {
+      font-size: 0.9rem; }
+    .flexcontainer .datacontainer .location .art_lists ul li {
+      background-size: 18px; }
   .flexcontainer .datacontainer .artwork .artwork_header a {
     background-size: 18px; }
     .flexcontainer .datacontainer .artwork .artwork_header a h2 {
@@ -297,10 +317,12 @@ html, body {
 @media only screen and (min-width: 480px) {
   .flexcontainer .datacontainer .locations .locations_header h2 {
     background-position: 96% center; }
-  .flexcontainer .datacontainer .location .location_info {
-    padding: 30px 30px 30px 30px; }
-  .flexcontainer .datacontainer .location .art_lists {
-    padding: 20px 30px 20px 30px; }
+  .flexcontainer .datacontainer .location {
+    min-width: 480px; }
+    .flexcontainer .datacontainer .location .location_info {
+      padding: 30px 30px 30px 30px; }
+    .flexcontainer .datacontainer .location .art_lists {
+      padding: 20px 30px 20px 30px; }
   .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
     padding: 20px 30px 30px 30px; }
     .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {

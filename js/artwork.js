@@ -25,7 +25,8 @@ $(document).ready(function(){
         });
         return vars;
     }*/
-
+$('.artwork').hide();
+    
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('jsondata') === null) {
             window.location="/";

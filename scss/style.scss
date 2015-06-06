@@ -10,7 +10,7 @@ html, body {
 .flexcontainer{
     height: 100%;
     max-height: 100%;
-
+    overflow: hidden;
 h1 {
     text-align: center;
     color: $blue;
@@ -23,7 +23,8 @@ h1 {
     top: 0px;
     width: 100%;
     background-color: white;
-    z-index: 5;    
+    z-index: 100;
+    height: 2%;
 }    
 
 .controls
@@ -92,14 +93,8 @@ h1 {
     margin: 0 auto;
 }
     
-.datacontainer
-{
-max-width: 525px;
-width: 100%;
-margin: 0 auto;  
-    .location_number,
-    .loc_number
-    {
+.menu {
+    .location_number {
     width: 25px;
     font-size: 1rem;
     font-weight: bold;
@@ -110,13 +105,13 @@ margin: 0 auto;
             padding: 0 1px;
         }
     }
+    
     .locations
     {
         position: fixed;
         bottom: 0px;
         width: 100%;
         max-width: inherit;
-        z-index: 20;
         background-color: $white;
         .locations_header
         {
@@ -174,11 +169,42 @@ margin: 0 auto;
             }
         }
     }
+}    
+    
+.datacontainer
+{
+position: absolute;
+top: 0;    
+max-width: 525px;
+width: 100%;
+margin: 0 auto;  
+height: inherit;
+overflow: auto;   
+z-index: -20;    
+//background-color: $white;     
+    .loc_number
+    {
+    width: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+        span
+        {
+            font-size: 0.7rem;
+            vertical-align: middle;
+            padding: 0 1px;
+        }
+    }
+    
     .location
     {
       position: absolute;
-      top: 46px;
-      background-color: $white;    
+      left: 100%;
+      max-width: 525px;  
+      min-width: 300px;    
+      height: 100%;  
+      z-index: 20;  
+      padding-top: 42px;
+      background-color: $white;
       .location_header {
       background-color: $blue;
       margin: 0 auto;
@@ -238,6 +264,7 @@ margin: 0 auto;
       } 
       .art_lists {
         padding: 20px 10px 10px 10px;
+        background-color: $white;
         ul {
           li {
             display: block;
@@ -386,17 +413,18 @@ and (min-width : 350px) {
           
         .location
         {
+          min-width: 350px;
           .location_header {
-              a {  
-                background-size: 18px;  
-                h2 {
-                  font-size: 100%;
-                }
-                img {
+            a {  
+              background-size: 18px;  
+              h2 {
+                 font-size: 100%;
+                 }
+              img {
                   width: 15px;
                   padding-right: 20px;
-                }
-            }
+                 }
+              }
           }
           .location_info {
             #location_address {
@@ -463,6 +491,7 @@ and (min-width : 480px) {
           
         .location
         {
+          min-width: 480px;    
           .location_info {
             padding: 30px 30px 30px 30px;  
             #location_address {    

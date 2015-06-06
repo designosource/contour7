@@ -24,7 +24,7 @@ $(document).ready(function(){
           1. Add Locations + popup
           2. Locations Menu
           3. Menu animatie
-          4. Info per locatie*/
+          4. Info per locatie --> zit in locations.js*/
     
     //Handle JSON object
     function handleLocations(jsonObject) {
@@ -57,7 +57,7 @@ $(document).ready(function(){
                         fill : "#fff" } },
                 eventHandlers: {
                     'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
-                        window.location = "locatie.html?id="+item.id;
+                        //window.location = "locatie.html?id="+item.id;
                     }
                 }
             };
