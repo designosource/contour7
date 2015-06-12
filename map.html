@@ -17,13 +17,58 @@
         <div class="map"><span>The map is loading...</span></div>
         <div class="controls"></div>
       </div>
-      <div class="datacontainer">
+      <div class="menu">
         <div class="locations">
+          <div class="locations_mobileheader">
+            <h2>Contour locaties</h2>
+          </div>
           <div class="locations_header">
             <h2>Contour locaties</h2>
           </div>
           <div id="locations_list">
           </div>
+        </div>
+      </div>
+      <div class="datacontainer">
+        <div class="location">
+          <div class="location_header">
+            <a>
+              <p class="loc_number"></p>
+              <h2>Location Name</h2>
+            </a>
+          </div>
+          <div class="location_info">
+            <img src="" alt="">
+            <p id="location_address">Adres</p>
+            <p id="location_description">Beschrijving</p>
+          </div>
+          <div class="art_lists">
+          </div>
+        </div>
+        <div class="artwork">
+           <div class="artwork_header">
+               <a>
+                 <h2>Artwork name</h2>
+               </a> 
+           </div>
+           <div class="artwork_info">
+             <div class="artist_info">
+                <img src="" alt="">
+                <ul class="artist">
+                    <li>Kunstenaar: <span class="artist_name"></span></li>
+                    <li>Geboortejaar: <span class="artist_birth"></span></li>
+                    <li>Nationaliteit: <span class="artist_nat"></span></li>
+                </ul>
+             </div>
+             <div class="artwork_desc">
+                <h3 class="artwork_title">title</h3>
+                <audio controls>
+                    <source src="" type="audio/ogg">
+                    <source src="" type="audio/mpeg">
+                </audio>
+                <p class="artwork_text">text</p>
+             </div>
+           </div>
         </div>
       </div>
     </div>
@@ -41,5 +86,6 @@
     <script type="text/javascript" src="js/jquery.mapael.js"></script>
     <script type="text/javascript" src="js/mechelen.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/artwork.js"></script>
 </body>
 </html>

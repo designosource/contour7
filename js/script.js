@@ -4,6 +4,7 @@ $(document).ready(function(){
     //Variables
     var executed = false;
     var locationCoords = [];
+    var jsonObject;
     
     function getUrlParameter(sParam)
     {
@@ -50,7 +51,7 @@ $(document).ready(function(){
           1. Add Locations + popup
           2. Locations Menu
           3. Menu animatie
-          4. Info per locatie*/
+          4. Info per locatie --> zit in locations.js*/
     
     //Handle JSON object
     function handleLocations(jsonObject) {
@@ -83,14 +84,18 @@ $(document).ready(function(){
                         fill : "#fff" } },
                 eventHandlers: {
                     'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
-                        window.location = "locatie.html?id="+item.id;
+                        //window.location = "locatie.html?id="+item.id;
+                        idLoc= item.id;
+                        pos = idLoc - 1;
+                        locInfo(jsonObject, pos,idLoc);
+                        locAnimate();
                     }
                 }
             };
             
             //2. Locations Menu
             //Get all locations
-            locations += "<li class='locations_item'><a class='loclink' href='locatie.html?id="+item.id+"'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
+            locations += "<li class='locations_item' id="+item.id+"><a class='loclink'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
             $('#locations_list').html(
                 "<ul>"+locations+"</ul>"
             );
@@ -101,31 +106,132 @@ $(document).ready(function(){
     //3.
     //menu animatie
     var locationList = $('#locations_list');
+    var locationMobileHead = $('.locations_mobileheader');
     var locationHead = $('.locations_header');
-    locationList.hide();
-    locationHead.on('click', function(){
-        if(locationHead.hasClass('active')) {
-            locationList.slideUp('slow', function(){});
-            $(this).removeClass('active'); 
-            $(this).find('h2').css("background-image","url(images/arrow-up.png)");
-        }
-        else {
-            locationList.slideDown('slow', function(){});
-            $(this).addClass('active'); 
-            $(this).find('h2').css("background-image","url(images/arrow-down.png)");
-        }
+    var mobileMenu = $('.menu');
+
+    function menuAnimate(head, menu){
+        if(menu.hasClass('active')) {
+                menu.removeClass('active');
+                menu.addClass('unactive');
+                head.find('h2').css("background-image","url(images/arrow-up.png)");
+            }
+            else {
+                menu.removeClass('unactive');
+                menu.addClass('active'); 
+                head.find('h2').css("background-image","url(images/arrow-down.png)");
+            }
+    }
     
-    });    
+    function menuAnimateTablet(head, menu){
+        if(menu.hasClass('active')) {
+                menu.removeClass('active');
+                menu.addClass('unactive');
+                head.find('h2').css("background-image","url(images/arrow-up.png)");
+            }
+            else {
+                menu.removeClass('unactive');
+                menu.addClass('active'); 
+                head.find('h2').css("background-image","url(images/arrow-down.png)");
+            }
+    }
+    
+    //menu animatie tablet
+    locationMobileHead.on('click', function(){
+        console.log('click');
+        menuAnimate(locationMobileHead, mobileMenu);
+    });
+    
+    locationHead.on('click', function(){
+        console.log('click');
+        menuAnimateTablet(locationHead, mobileMenu);
+    });
+    
+    //4.
+    //aparte locatie selecteren
+    var idLoc;
+    var pos;
+    var locationList = $('#locations_list');
+    var locationHead = $('.locations_header');    
+
+    function locInfo(jsonObject, pos,id){
+        var loc = jsonObject[pos];
+        var locNaam = loc.name_nl;
+        console.log(loc);
+        var locAdres = loc.address_nl;
+        var locDescr = loc.description_nl;
+        var locImage = loc.image;
+        var art = "";
+        var artID = 0;
+
+        $('.location_header h2').html(locNaam);
+        $('#location_address').html(locAdres);
+        $('#location_description').html(locDescr);
+
+        $.each(loc.artworks, function(a, artwork) {
+          artID += 1    
+          art += "<li class='click' id="+artID+">"+
+                 "<img src='"+artwork.image+"'>"+
+                 "<a>"+
+                    "<h3>"+artwork.name_nl+"</h3>"+
+                    "<p>"+artwork.artist['name']+"</p>"+
+                 "</a>"+
+                 "</li>";
+        });    
+        $('.art_lists').html("<ul>"+art+"</ul>");
+        $('.loc_number').html("[<span>" + id + "</span>]");
+    }
+
+    //slide in view animation function
+    //$('.location').hide();  
+    function locAnimate(){
+       $('.location').addClass('slideLeft');
+       $('.location').removeClass('slideRight');    
+       $('.location').show();
+       $('.datacontainer').css('zIndex', '20');
+           
+    } 
+
+    //slide back out of view on click
+    $('.location_header').on('click', function(){
+            $('.location').addClass('slideRight');
+            $('.location').removeClass('slideLeft');
+            //$('.location').hide();
+            setTimeout( function(){
+                $('.datacontainer').css('zIndex', '-20');
+            },1000);
+
+    }); 
+    
+    //wanneer scherm groter is dan 768px
+    //animatie functie aanpassen naar juiste animatie
+    //opletten dat bij de 5de locatie alle kunstwerken er op komen
+    //anders eens zien hoe het werkt met overflow scroll
+    
+    
     
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('contour_data')) {
-            var jsonObject = JSON.parse(localStorage.getItem('contour_data'));
+            jsonObject = JSON.parse(localStorage.getItem('contour_data'));
             handleLocations(jsonObject);
             $.each(jsonObject, function(i, item) {
-                 locationCoords.push({id: item.id, lat: item.lat, long: item.long});
+                 locationCoords.push({id: item.id, lat: item.lat, long: item.long});    
+            });
+            //4.navigation to location detail start
+            $('.locations_item').on('click', function(){
+            idLoc = $(this).attr('id');
+            console.log(idLoc);
+            pos = idLoc - 1; 
+            locInfo(jsonObject, pos,idLoc); 
+            menuAnimate(locationHead,mobileMenu);
+            locAnimate();
             });
         } else {
+<<<<<<< HEAD
             window.location="index.html";
+=======
+            window.location="http://www.liesbethvanaerschot.com/contour/";
+>>>>>>> 78129ca40c5faa36f55004c5eada4adca745992e
         }
     } else {
         alert('Could not be cached');
