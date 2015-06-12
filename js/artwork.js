@@ -22,23 +22,19 @@ $(document).ready(function(){
     //artwork animation
     $('.artwork').hide();
     function artAnimate(){
+      $('.artwork').addClass('slideLeft');
+      $('.artwork').removeClass('slideRight');    
       $('.artwork').show();
-      $('.artwork').css('zIndex', '25'); 
-      $('.artwork').animate({
-            left: "0"
-        }, 1000, function() {
-        // Animation complete.
-      });   
+      $('.datacontainer').css('zIndex', '25');  
     }
     
     $('.artwork_header').on('click', function(){
-        $('.artwork').animate({
-            left: '100%'
-        }, 1000, function() {
-        // Animation complete.
+        $('.artwork').addClass('slideRight');
+        $('.artwork').removeClass('slideLeft');
+        setTimeout( function(){
+            $('.datacontainer').css('zIndex', '20');
             $('.artwork').hide();
-            $('.artwork').css('zIndex', '20');
-        });
+        },1000);
 
     });
     

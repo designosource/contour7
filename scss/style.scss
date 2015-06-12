@@ -7,6 +7,175 @@ html, body {
     font-family: Arimo, sans-serif;
 }
 
+@-webkit-keyframes mobileUp {
+  0%   { bottom: -340px; }
+  100% { bottom: 0px; }
+}
+@-moz-keyframes mobileUp {
+  0%   { bottom: -340px; }
+  100% { bottom: 0px; }
+}
+@-o-keyframes mobileUp {
+  0%   { bottom: -340px; }
+  100% { bottom: 0px; }
+}
+@keyframes mobileUp {
+  0%   { bottom: -340px; }
+  100% { bottom: 0px; }
+}
+
+@-webkit-keyframes mobileDown {
+  0%   { bottom: 0px; }
+  100% { bottom: -340px; }
+}
+@-moz-keyframes mobileDown {
+  0%   { bottom: 0px; }
+  100% { bottom: -340px; }
+}
+@-o-keyframes mobileDown {
+  0%   { bottom: 0px; }
+  100% { bottom: -340px; }
+}
+@keyframes mobileDown {
+  0%   { bottom: 0px; }
+  100% { bottom: -340px; }
+}
+
+@-webkit-keyframes toLeft {
+  0%   { left: 100%; }
+  100% { left: 0%; }
+}
+@-moz-keyframes toLeft {
+  0%   { left: 100%; }
+  100% { left: 0%; }
+}
+@-o-keyframes toLeft {
+  0%   { left: 100%; }
+  100% { left: 0%; }
+}
+@keyframes toLeft {
+  0%   { left: 100%; }
+  100% { left: 0%; }
+}
+
+@-webkit-keyframes toRight {
+  0%   { left: 0%; }
+  100% { left: 100%; }
+}
+@-moz-keyframes toRight {
+  0%   { left: 0%; }
+  100% { left: 100%; }
+}
+@-o-keyframes toRight {
+  0%   { left: 0%; }
+  100% { left: 100%; }
+}
+@keyframes toRight {
+  0%   { left: 0%; }
+  100% { left: 100%; }
+}
+
+@-webkit-keyframes tabletLeft {
+  0%   { left: 90%; }
+  100% { left: 46%; }
+}
+@-moz-keyframes tabletLeft {
+  0%   { left: 90%; }
+  100% { left: 46%; }
+}
+@-o-keyframes tabletLeft {
+  0%   { left: 90%; }
+  100% { left: 46%; }
+}
+@keyframes tabletLeft {
+  0%   { left: 90%; }
+  100% { left: 46%; }
+}
+
+@-webkit-keyframes tabletRight {
+  0%   { left: 46%; }
+  100% { left: 90%; }
+}
+@-moz-keyframes tabletRight {
+  0%   { left: 46%; }
+  100% { left: 90%; }
+}
+@-o-keyframes tabletRight {
+  0%   { left: 46%; }
+  100% { left: 90%; }
+}
+@keyframes tabletRight {
+  0%   { left: 46%; }
+  100% { left: 90%; }
+}
+
+@-webkit-keyframes toLeftTablet {
+  0%   { left: 100%; }
+  100% { left: 46%; }
+}
+@-moz-keyframes toLeftTablet {
+  0%   { left: 100%; }
+  100% { left: 46%; }
+}
+@-o-keyframes toLeftTablet {
+  0%   { left: 100%; }
+  100% { left: 46%; }
+}
+@keyframes toLeftTablet {
+  0%   { left: 100%; }
+  100% { left: 46%; }
+}
+
+@-webkit-keyframes toRightTablet {
+  0%   { left: 46%; }
+  100% { left: 100%; }
+}
+@-moz-keyframes toRightTablet {
+  0%   { left: 46%; }
+  100% { left: 100%; }
+}
+@-o-keyframes toRightTablet {
+  0%   { left: 46%; }
+  100% { left: 100%; }
+}
+@keyframes toRightTablet {
+  0%   { left: 46%; }
+  100% { left: 100%; }
+}
+
+.active {
+    -webkit-animation: mobileUp 1s forwards linear;
+    -moz-animation:    mobileUp 1s forwards linear;
+    -o-animation:      mobileUp 1s forwards linear;
+    animation:         mobileUp 1s forwards linear;
+}
+        
+.unactive {
+    -webkit-animation: mobileDown 1s forwards linear;
+    -moz-animation:    mobileDown 1s forwards linear;
+    -o-animation:      mobileDown 1s forwards linear;
+    animation:         mobileDown 1s forwards linear;
+}
+
+.slideLeft {
+    -webkit-animation: toLeft 1s forwards linear;
+    -moz-animation:    toLeft 1s forwards linear;
+    -o-animation:      toLeft 1s forwards linear;
+    animation:         toLeft 1s forwards linear; 
+}
+
+.slideRight {
+    -webkit-animation: toRight 1s forwards linear;
+    -moz-animation:    toRight 1s forwards linear;
+    -o-animation:      toRight 1s forwards linear;
+    animation:         toRight 1s forwards linear; 
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .flexcontainer{
     height: 100%;
     max-height: 100%;
@@ -84,7 +253,6 @@ h1 {
 }
 
 .mapcontainer {
-    max-width: 525px;
     width: 100%;
     height: 100%;
     max-height: inherit;
@@ -94,10 +262,15 @@ h1 {
 }
     
 .menu {
+    position: fixed;
+    bottom: -340px;
+    width: 100%;
+    max-width: inherit;
+    background-color: $white;
     .location_number {
     width: 25px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: bold;   
         span
         {
             font-size: 0.7rem;
@@ -108,12 +281,8 @@ h1 {
     
     .locations
     {
-        position: fixed;
-        bottom: 0px;
-        width: 100%;
-        max-width: inherit;
-        background-color: $white;
-        .locations_header
+        
+        .locations_mobileheader
         {
             h2
             {
@@ -128,6 +297,24 @@ h1 {
             background-size: 25px;    
             }
         }
+        
+        .locations_header
+        {
+            display: none;
+            h2
+            {
+            text-transform: uppercase;
+            color: $blue;
+            font-weight: 700;
+            padding: 20px 20px 20px 0px; 
+            margin: 0px 20px 0px 30px;    
+            background-image: url(../images/arrow-up.png);
+            background-repeat: no-repeat;
+            background-position: 100% center;
+            background-size: 25px;    
+            }
+        }
+        
         #locations_list
         {
             background-color: $white;
@@ -163,7 +350,8 @@ h1 {
                 font-weight: 400;
                 padding-left: 20px;   
                 width: 70%;   
-                font-size: 0.8rem;    
+                font-size: 0.8rem; 
+                padding-top: 5px;    
                 }
               } 
             }
@@ -174,8 +362,7 @@ h1 {
 .datacontainer
 {
 position: absolute;
-top: 0;    
-max-width: 525px;
+top: 0;
 width: 100%;
 margin: 0 auto;  
 height: inherit;
@@ -198,8 +385,7 @@ z-index: -20;
     .location
     {
       position: absolute;
-      left: 100%;
-      max-width: 525px;  
+      left: 100%;  
       min-width: 300px;    
       height: 100%;  
       z-index: 20;  
@@ -306,8 +492,7 @@ z-index: -20;
     
     .artwork {
       position: absolute;
-      left: 100%;
-      max-width: 525px;  
+      left: 100%; 
       min-width: 300px;    
       height: 100%;  
       z-index: 20;  
@@ -317,7 +502,7 @@ z-index: -20;
           background-color: $blue;
           margin: 0 auto;
           text-align: center;
-          padding: 10px 0px;      
+          padding: 12.5px 0px;      
               a {
                 color: $white;
                 text-decoration: none;
@@ -543,3 +728,108 @@ and (min-width : 480px) {
     }
 
 }
+
+@media only screen 
+and (min-width : 800px) and (max-width: 980px) {
+   .active {
+    -webkit-animation: tabletLeft 1s forwards linear;
+    -moz-animation:    tabletLeft 1s forwards linear;
+    -o-animation:      tabletLeft 1s forwards linear;
+    animation:         tabletLeft 1s forwards linear;
+    }
+
+    .unactive {
+    -webkit-animation: tabletRight 1s forwards linear;
+    -moz-animation:    tabletRight 1s forwards linear;
+    -o-animation:      tabletRight 1s forwards linear;
+    animation:         tabletRight 1s forwards linear;
+    }   
+    
+    .slideLeft {
+    -webkit-animation: toLeftTablet 1s forwards linear;
+    -moz-animation:    toLeftTablet 1s forwards linear;
+    -o-animation:      toLeftTablet 1s forwards linear;
+    animation:         toLeftTablet 1s forwards linear; 
+    }
+
+    .slideRight {
+    -webkit-animation: toRightTablet 1s forwards linear;
+    -moz-animation:    toRightTablet 1s forwards linear;
+    -o-animation:      toRightTablet 1s forwards linear;
+    animation:         toRightTablet 1s forwards linear; 
+    }
+    
+   .flexcontainer {
+      .mapcontainer {
+        max-width: 90%;
+        margin: 0 0;
+        display: block;
+        float: left;  
+      }
+       
+      .menu {
+        position: absolute;
+        bottom: 0px;  
+        display: block;
+        float: left;
+        height: 100%;
+        width: 54%;
+        left: 90%;  
+        .locations {
+          height: 100%;
+          .locations_mobileheader {
+            display: none;
+          }    
+          .locations_header {
+              display: block;
+              height: 100%;
+              padding: 50px 0px;
+              box-sizing: border-box;
+              max-width: 90px;
+              width: 20%;
+              float: left;
+              h2 {
+                background-position: center 100%;
+                height: inherit;
+                padding: 20px; 
+                margin: 0px;  
+              }
+          }    
+          #locations_list {
+            display: block;
+            float: left;  
+            width: 80%;
+            height: 100%;
+            padding: 50px 0px;
+            box-sizing: border-box;  
+            li
+            {
+            padding: 15px 25px 15px 30px; 
+            }
+          }
+        }  
+      }   
+       
+      .datacontainer {
+        max-width: 980px;  
+        .location {
+          /*min-width: 768px;
+          max-width: 980px;*/
+          width: 54%;    
+        }
+        .artwork {
+          /*min-width: 768px;
+          max-width: 980px;*/
+          width: 54%;    
+        }  
+      }   
+    } 
+
+}
+/*@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
+	.flexcontainer {
+      .mapcontainer {
+        max-width: 100%;
+      }
+    }
+}*/

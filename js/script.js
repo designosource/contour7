@@ -80,24 +80,46 @@ $(document).ready(function(){
     //3.
     //menu animatie
     var locationList = $('#locations_list');
+    var locationMobileHead = $('.locations_mobileheader');
     var locationHead = $('.locations_header');
-    locationList.hide();
-    locationHead.on('click', function(){
-        menuAnimate(locationHead);
-    });
+    var mobileMenu = $('.menu');
 
-    function menuAnimate(head){
-        if(locationHead.hasClass('active')) {
-                locationList.slideUp('slow', function(){});
-                head.removeClass('active'); 
+    function menuAnimate(head, menu){
+        if(menu.hasClass('active')) {
+                menu.removeClass('active');
+                menu.addClass('unactive');
                 head.find('h2').css("background-image","url(images/arrow-up.png)");
             }
             else {
-                locationList.slideDown('slow', function(){});
-                head.addClass('active'); 
+                menu.removeClass('unactive');
+                menu.addClass('active'); 
                 head.find('h2').css("background-image","url(images/arrow-down.png)");
             }
     }
+    
+    function menuAnimateTablet(head, menu){
+        if(menu.hasClass('active')) {
+                menu.removeClass('active');
+                menu.addClass('unactive');
+                head.find('h2').css("background-image","url(images/arrow-up.png)");
+            }
+            else {
+                menu.removeClass('unactive');
+                menu.addClass('active'); 
+                head.find('h2').css("background-image","url(images/arrow-down.png)");
+            }
+    }
+    
+    //menu animatie tablet
+    locationMobileHead.on('click', function(){
+        console.log('click');
+        menuAnimate(locationMobileHead, mobileMenu);
+    });
+    
+    locationHead.on('click', function(){
+        console.log('click');
+        menuAnimateTablet(locationHead, mobileMenu);
+    });
     
     //4.
     //aparte locatie selecteren
@@ -135,28 +157,32 @@ $(document).ready(function(){
     }
 
     //slide in view animation function
-    $('.location').hide();  
+    //$('.location').hide();  
     function locAnimate(){
+       $('.location').addClass('slideLeft');
+       $('.location').removeClass('slideRight');    
        $('.location').show();
-       $('.datacontainer').css('zIndex', '20');    
-       $('.location').animate({
-            left: "0"
-        }, 1000, function() {
-        // Animation complete.
-        });    
+       $('.datacontainer').css('zIndex', '20');
+           
     } 
 
     //slide back out of view on click
     $('.location_header').on('click', function(){
-        $( ".location" ).animate({
-            left: '100%'
-        }, 1000, function() {
-        // Animation complete.
-            $('.location').hide();
-            $('.datacontainer').css('zIndex', '-20');
-        });
+            $('.location').addClass('slideRight');
+            $('.location').removeClass('slideLeft');
+            //$('.location').hide();
+            setTimeout( function(){
+                $('.datacontainer').css('zIndex', '-20');
+            },1000);
 
-    });   
+    }); 
+    
+    //wanneer scherm groter is dan 768px
+    //animatie functie aanpassen naar juiste animatie
+    //opletten dat bij de 5de locatie alle kunstwerken er op komen
+    //anders eens zien hoe het werkt met overflow scroll
+    
+    
     
     if(typeof(Storage) !== "undefined") {
         if (localStorage.getItem('contour_data')) {
@@ -171,11 +197,11 @@ $(document).ready(function(){
             console.log(idLoc);
             pos = idLoc - 1; 
             locInfo(jsonObject, pos,idLoc); 
-            menuAnimate(locationHead);
+            menuAnimate(locationHead,mobileMenu);
             locAnimate();
             });
         } else {
-            window.location="/";
+            window.location="http://www.liesbethvanaerschot.com/contour/";
         }
     } else {
         alert('Could not be cached');
