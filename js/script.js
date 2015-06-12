@@ -1,9 +1,35 @@
 $(document).ready(function(){
-    console.log('Version 0.5.2');
+    console.log('Version 0.6.0');
     
     //Variables
     var executed = false;
     var locationCoords = [];
+    
+    function getUrlParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return sParameterName[1];
+            }
+        }
+    }   
+    
+    function getLanguage() {
+        if(getUrlParameter('lng')) {
+            var language = getUrlParameter('lng');
+            alert(language);
+        } else {
+            var language = window.navigator.userLanguage || window.navigator.language;
+            alert(language);
+        }
+    }
+    
+    getLanguage();
     
     //Map initializer
     $(".mapcontainer").mapael({
@@ -99,7 +125,7 @@ $(document).ready(function(){
                  locationCoords.push({id: item.id, lat: item.lat, long: item.long});
             });
         } else {
-            window.location="/";
+            window.location="index.html";
         }
     } else {
         alert('Could not be cached');
@@ -146,31 +172,36 @@ $(document).ready(function(){
                      console.log(error);
                 });
         } else {
-            alert("Geolocation is not supported by this browser.");
+            console.log("Geolocation is not supported by this browser.");
         }
     }
     
+    //Ajax calls to insert user data
     function getDateTime() {
         var datetime = new Date().toISOString().slice(0, 19).replace('T', ' ');
         return datetime;
     }
-    function savePersonData(location) {
-        $.ajax({
-            type: "POST",
-            url: "ajax/addperson.php",
-            data: {person_id: localStorage.getItem('contour_uid'), location_id: location.id, start_time: getDateTime()},
-            dataType: "json"
-        })
-        .done(function( data ){
-            if(data) {
-                localStorage.setItem('contour_currentLocation', JSON.stringify({record_id: data, location_id: location.id}));
-            }
-        });
+    function insertData(location) {
+        if(localStorage.getItem('contour_currentLocation')) {
+            console.log('Current location not finished yet.');
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "ajax/insertdata.php",
+                data: {person_id: localStorage.getItem('contour_uid'), location_id: location.id, start_time: getDateTime()},
+                dataType: "json"
+            })
+            .done(function( data ){
+                if(data) {
+                    localStorage.setItem('contour_currentLocation', JSON.stringify({record_id: data, location_id: location.id}));
+                }
+            });
+        }
     }
     function updateData(currentLocation) {
         $.ajax({
             type: "POST",
-            url: "ajax/updateperson.php",
+            url: "ajax/updatedata.php",
             data: {person_id: localStorage.getItem('contour_uid'), record_id: currentLocation.record_id, location_id: currentLocation.location_id, end_time: getDateTime()},
             dataType: "json"
         })
@@ -194,7 +225,7 @@ $(document).ready(function(){
         var d = R * c; // Distance in km
         console.log(d);
         if(d < 30) {
-            savePersonData(location);
+            insertData(location);
         } else {
             if (localStorage.getItem('contour_currentLocation')) {
                 var currentLocation = localStorage.getItem('contour_currentLocation');
