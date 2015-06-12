@@ -39,10 +39,10 @@ $(document).ready(function(){
     });
     
     if(typeof(Storage) !== "undefined") {
-        if (localStorage.getItem('jsondata') === null) {
-            window.location="/";
+        if (localStorage.getItem('contour_data') === null) {
+            window.location="index.html";
         } else {
-            var jsonObject = JSON.parse(localStorage.getItem('jsondata'));
+            var jsonObject = JSON.parse(localStorage.getItem('contour_data'));
 
             //var idLoc = getUrlVars()["id"];
             //var artID = getUrlVars()["art"];

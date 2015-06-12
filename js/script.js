@@ -1,11 +1,13 @@
 $(document).ready(function(){
     console.log('Version 0.6.0');
     
-    //Variables
+    //Variables DO NOT TOUCH
     var executed = false;
     var locationCoords = [];
     var jsonObject;
+    var language;
     
+    //Detect the language
     function getUrlParameter(sParam)
     {
         var sPageURL = window.location.search.substring(1);
@@ -18,19 +20,73 @@ $(document).ready(function(){
                 return sParameterName[1];
             }
         }
-    }   
-    
+    }
     function getLanguage() {
         if(getUrlParameter('lng')) {
-            var language = getUrlParameter('lng');
-            alert(language);
+            language = getUrlParameter('lng');
         } else {
-            var language = window.navigator.userLanguage || window.navigator.language;
-            alert(language);
+            language = window.navigator.userLanguage || window.navigator.language;
         }
     }
-    
     getLanguage();
+    
+    //Get the right translation for each field
+    function getTranslation(field, language, id, artwork_id) {
+        //Location translations
+        if(field == 'location_name') {
+            if(language == 'nl') {
+                return jsonObject[id].name_nl;
+            } else if (language == 'en'){
+                return jsonObject[id].name_en;
+            } else if (language == 'fr'){
+                return jsonObject[id].name_fr;
+            }
+        } else if(field == 'location_address') {
+            if(language == 'nl') {
+                return jsonObject[id].address_nl;
+            } else if (language == 'en'){
+                return jsonObject[id].address_en;
+            } else if (language == 'fr'){
+                return jsonObject[id].address_fr;
+            }
+        } else if(field == 'location_description') {
+            if(language == 'nl') {
+                return jsonObject[id].description_nl;
+            } else if (language == 'en'){
+                return jsonObject[id].description_en;
+            } else if (language == 'fr'){
+                return jsonObject[id].description_fr;
+            }
+        }
+        //Artwork translations
+        else if(field == 'artwork_name') {
+            if(language == 'nl') {
+                return jsonObject[id].artworks[artwork_id].name_nl;
+            } else if (language == 'en'){
+                return jsonObject[id].artworks[artwork_id].name_en;
+            } else if (language == 'fr'){
+                return jsonObject[id].artworks[artwork_id].name_fr;
+            }
+        } else if(field == 'artwork_description') {
+            if(language == 'nl') {
+                return jsonObject[id].artworks[artwork_id].description_nl;
+            } else if (language == 'en'){
+                return jsonObject[id].artworks[artwork_id].description_en;
+            } else if (language == 'fr'){
+                return jsonObject[id].artworks[artwork_id].description_fr;
+            }
+        }
+        //Artist translations
+        else if(field == 'artist_nationality') {
+            if(language == 'nl') {
+                return jsonObject[id].artworks[artwork_id].artist.nationality_nl;
+            } else if (language == 'en'){
+                return jsonObject[id].artworks[artwork_id].artist.nationality_en;
+            } else if (language == 'fr'){
+                return jsonObject[id].artworks[artwork_id].artist.nationality_fr;
+            }
+        }
+    }
     
     //Map initializer
     $(".mapcontainer").mapael({
@@ -84,7 +140,6 @@ $(document).ready(function(){
                         fill : "#fff" } },
                 eventHandlers: {
                     'click touchstart': function (e, id, mapElem, textElem, elemOptions) {
-                        //window.location = "locatie.html?id="+item.id;
                         idLoc= item.id;
                         pos = idLoc - 1;
                         locInfo(jsonObject, pos,idLoc);
@@ -95,7 +150,7 @@ $(document).ready(function(){
             
             //2. Locations Menu
             //Get all locations
-            locations += "<li class='locations_item' id="+item.id+"><a class='loclink'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+item.name_nl+"</h3></a></li>";
+            locations += "<li class='locations_item' id="+item.id+"><a class='loclink'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+getTranslation('location_name', language, i)+"</h3></a></li>";
             $('#locations_list').html(
                 "<ul>"+locations+"</ul>"
             );
@@ -156,10 +211,9 @@ $(document).ready(function(){
 
     function locInfo(jsonObject, pos,id){
         var loc = jsonObject[pos];
-        var locNaam = loc.name_nl;
-        console.log(loc);
-        var locAdres = loc.address_nl;
-        var locDescr = loc.description_nl;
+        var locNaam = getTranslation('location_name', language, pos);
+        var locAdres = getTranslation('location_address', language, pos);
+        var locDescr = getTranslation('location_description', language, pos);
         var locImage = loc.image;
         var art = "";
         var artID = 0;
@@ -173,7 +227,7 @@ $(document).ready(function(){
           art += "<li class='click' id="+artID+">"+
                  "<img src='"+artwork.image+"'>"+
                  "<a>"+
-                    "<h3>"+artwork.name_nl+"</h3>"+
+                    "<h3>"+getTranslation('artwork_name', language, pos, a)+"</h3>"+
                     "<p>"+artwork.artist['name']+"</p>"+
                  "</a>"+
                  "</li>";
@@ -219,19 +273,15 @@ $(document).ready(function(){
             });
             //4.navigation to location detail start
             $('.locations_item').on('click', function(){
-            idLoc = $(this).attr('id');
-            console.log(idLoc);
-            pos = idLoc - 1; 
-            locInfo(jsonObject, pos,idLoc); 
-            menuAnimate(locationHead,mobileMenu);
-            locAnimate();
+                idLoc = $(this).attr('id');
+                console.log(idLoc);
+                pos = idLoc - 1; 
+                locInfo(jsonObject, pos,idLoc); 
+                menuAnimate(locationHead,mobileMenu);
+                locAnimate();
             });
         } else {
-<<<<<<< HEAD
             window.location="index.html";
-=======
-            window.location="http://www.liesbethvanaerschot.com/contour/";
->>>>>>> 78129ca40c5faa36f55004c5eada4adca745992e
         }
     } else {
         alert('Could not be cached');
