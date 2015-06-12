@@ -337,7 +337,7 @@ body {
       min-width: 300px;
       height: 100%;
       z-index: 20;
-      padding-top: 42px;
+      padding-top: 38.8px;
       background-color: #fff; }
       .flexcontainer .datacontainer .location .location_header {
         background-color: #2056A4;
@@ -423,7 +423,7 @@ body {
       min-width: 300px;
       height: 100%;
       z-index: 20;
-      padding-top: 42px;
+      padding-top: 38.8px;
       background-color: #fff; }
       .flexcontainer .datacontainer .artwork .artwork_header {
         background-color: #2056A4;
@@ -607,25 +607,17 @@ body {
         width: 80%;
         height: 100%;
         padding: 50px 0px;
-        box-sizing: border-box; }
+        box-sizing: border-box;
+        overflow: auto; }
         .flexcontainer .menu .locations #locations_list li {
           padding: 15px 25px 15px 30px; }
-  .flexcontainer .datacontainer {
-    max-width: 980px; }
-    .flexcontainer .datacontainer .location {
-      /*min-width: 768px;
-      max-width: 980px;*/
-      width: 54%; }
-    .flexcontainer .datacontainer .artwork {
-      /*min-width: 768px;
-      max-width: 980px;*/
-      width: 54%; } }
-/*@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
-	.flexcontainer {
-      .mapcontainer {
-        max-width: 100%;
-      }
-    }
-}*/
+  .flexcontainer .datacontainer .location {
+    /*min-width: 768px;
+    max-width: 980px;*/
+    width: 54%; }
+  .flexcontainer .datacontainer .artwork {
+    /*min-width: 768px;
+    max-width: 980px;*/
+    width: 54%; } }
 
 /*# sourceMappingURL=style.css.map */

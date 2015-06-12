@@ -389,7 +389,7 @@ z-index: -20;
       min-width: 300px;    
       height: 100%;  
       z-index: 20;  
-      padding-top: 42px;
+      padding-top: 38.8px;
       background-color: $white;
       .location_header {
       background-color: $blue;
@@ -496,7 +496,7 @@ z-index: -20;
       min-width: 300px;    
       height: 100%;  
       z-index: 20;  
-      padding-top: 42px;
+      padding-top: 38.8px;
       background-color: $white;
       .artwork_header {
           background-color: $blue;
@@ -801,7 +801,8 @@ and (min-width : 800px) and (max-width: 980px) {
             width: 80%;
             height: 100%;
             padding: 50px 0px;
-            box-sizing: border-box;  
+            box-sizing: border-box; 
+            overflow: auto;  
             li
             {
             padding: 15px 25px 15px 30px; 
@@ -811,7 +812,7 @@ and (min-width : 800px) and (max-width: 980px) {
       }   
        
       .datacontainer {
-        max-width: 980px;  
+        //max-width: 980px;  
         .location {
           /*min-width: 768px;
           max-width: 980px;*/
@@ -826,10 +827,8 @@ and (min-width : 800px) and (max-width: 980px) {
     } 
 
 }
-/*@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
-	.flexcontainer {
-      .mapcontainer {
-        max-width: 100%;
-      }
-    }
-}*/
+
+@media only screen 
+and (min-width : 980px) {
+    
+}
