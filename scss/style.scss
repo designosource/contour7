@@ -603,7 +603,7 @@ and (min-width : 350px) {
             }  
           }
           .locations {
-          .locations_header {
+          .locations_mobileheader {
             h2 {
               background-position: 98% center;  
             }
@@ -714,7 +714,7 @@ and (min-width : 480px) {
         
       .menu {
         .locations {
-          .locations_header {
+          .locations_mobileheader {
             h2 {
               background-position: 96% center;
             }
@@ -825,7 +825,11 @@ and (min-width : 800px) {
                 background-position: center 100%;
                 height: inherit;
                 margin: 0px; 
-                background-image: url(../images/arrow-left.svg);  
+                background-image: url(../images/arrow-left.svg);
+                  
+                img {
+                width: 50px;
+                  }  
               }
           }    
           #locations_list {
@@ -876,7 +880,7 @@ and (min-width : 1024px) {
     .flexcontainer {
        .apptitle {
         .language {
-          left: 85%; 
+          left: 82%; 
         }
        }    
          

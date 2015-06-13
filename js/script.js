@@ -118,8 +118,9 @@ $(document).ready(function(){
     /*JQuery OVERZICHT:
           1. Add Locations + popup
           2. Locations Menu
-          3. Menu animatie
-          4. Info per locatie --> zit in locations.js*/
+          3. Menu animation
+          4. Single location
+          5. Single artwork*/
     
     //Handle JSON object
     function handleLocations(jsonObject) {
@@ -160,8 +161,8 @@ $(document).ready(function(){
                 }
             };
             
-            //2. Locations Menu
-            //Get all locations
+    //2. Locations Menu
+    //Get all locations
             locations += "<li class='locations_item' id="+item.id+"><a class='loclink'><p class='location_number'>[<span>" + item.id + "</span>]</p><h3>"+getTranslation('location_name', language, i)+"</h3></a></li>";
             $('#locations_list').html(
                 "<ul>"+locations+"</ul>"
@@ -171,12 +172,12 @@ $(document).ready(function(){
     }
     
     //3.
-    //menu animatie
+    //menu animation
     var locationList = $('#locations_list');
     var locationMobileHead = $('.locations_mobileheader');
     var locationHead = $('.locations_header');
     var mobileMenu = $('.menu');
-
+    //vertical animation
     function menuAnimate(head, menu){
         if(menu.hasClass('active')) {
                 menu.removeClass('activeAni');
@@ -199,7 +200,7 @@ $(document).ready(function(){
                 },1000)
             }
     }
-    
+    //horizontal animation
     function menuAnimateTablet(head, menu){
         if(menu.hasClass('active')) {
                 menu.removeClass('activeAni');
@@ -223,7 +224,7 @@ $(document).ready(function(){
             }
     }
     
-    //menu animatie tablet
+    //on click starting function for menu animation
     locationMobileHead.on('click', function(){
         console.log('click');
         menuAnimate(locationMobileHead, mobileMenu);
@@ -235,7 +236,7 @@ $(document).ready(function(){
     });
     
     //4.
-    //aparte locatie selecteren
+    //information single location
     var idLoc;
     var pos;
     var locationList = $('#locations_list');
@@ -268,8 +269,7 @@ $(document).ready(function(){
         $('.loc_number').html("[<span>" + id + "</span>]");
     }
 
-    //slide in view animation function
-    //$('.location').hide();  
+    //slide in view animation function  
     function locAnimate(){
        $('.location').addClass('slideLeftAni');
        $('.location').removeClass('slideRightAni');  
@@ -296,6 +296,51 @@ $(document).ready(function(){
 
     }); 
     
+    //5.
+    //information single artwork
+    var idLoc;
+    var artID;
+    var pos;
+    var artpos;
+    
+    //showing information    
+    function artInfo(jsonObject, pos, artpos){
+        var loc = jsonObject[pos];
+        var art = loc.artworks[artpos];
+        $('.artwork_header').find('h2').html(art.code);
+        $('.artist_name').html(art.artist['name']);
+        $('.artist_birth').html(art.artist['year_birth']);
+        $('.artist_nat').html(art.artist['nationality_nl']);
+        $('.artwork_title').html(art.name_nl);
+        $('.artwork_text').html(art.description_nl);
+    }
+    
+    //artwork animation
+    $('.artwork').hide();
+    function artAnimate(){
+      $('.artwork').addClass('slideLeftAni');
+      $('.artwork').removeClass('slideRightAni');
+      $('.artwork').removeClass('slideRight');    
+      $('.artwork').show();
+      $('.datacontainer').css('zIndex', '25');
+      setTimeout( function(){
+           $('.artwork').removeClass('slideLeftAni');
+           $('.artwork').addClass('slideLeft');
+       },1000);  
+    }
+    
+    $('.artwork_header').on('click', function(){
+        $('.artwork').addClass('slideRightAni');
+        $('.artwork').removeClass('slideLeftAni');
+        $('.artwork').removeClass('slideLeft');
+        setTimeout( function(){
+            $('.datacontainer').css('zIndex', '20');
+            $('.artwork').removeClass('slideRightAni');
+            $('.artwork').addClass('slideRight');
+            $('.artwork').hide();
+        },1000);
+
+    });
     
     
     if(typeof(Storage) !== "undefined") {
@@ -313,6 +358,17 @@ $(document).ready(function(){
                 locInfo(jsonObject, pos,idLoc); 
                 menuAnimate(locationHead,mobileMenu);
                 locAnimate();
+            });
+            
+            //5. navigation to artwork detail
+            $('.art_lists').on('click','li.click', function(){
+                
+                artID = $(this).attr('id');
+                artpos = artID - 1;
+                idLoc = $('.loc_number').find('span').html();
+                pos = idLoc - 1; 
+                artInfo(jsonObject, pos,artpos);
+                artAnimate();
             });
         } else {
             window.location="index.html";

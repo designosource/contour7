@@ -483,7 +483,7 @@ body {
     font-size: 1.4rem; }
     .flexcontainer .menu .location_number span {
       font-size: 1rem; }
-  .flexcontainer .menu .locations .locations_header h2 {
+  .flexcontainer .menu .locations .locations_mobileheader h2 {
     background-position: 98% center; }
   .flexcontainer .menu .locations #locations_list li a h3 {
     font-size: 1rem; }
@@ -529,7 +529,7 @@ body {
       font-size: 0.9rem;
       background-size: 20px;
       padding-left: 5px; }
-  .flexcontainer .menu .locations .locations_header h2 {
+  .flexcontainer .menu .locations .locations_mobileheader h2 {
     background-position: 96% center; }
   .flexcontainer .datacontainer .location {
     min-width: 400px; }
@@ -599,6 +599,8 @@ body {
           height: inherit;
           margin: 0px;
           background-image: url(../images/arrow-left.svg); }
+          .flexcontainer .menu .locations .locations_header h2 img {
+            width: 50px; }
       .flexcontainer .menu .locations #locations_list {
         display: block;
         float: left;
@@ -630,7 +632,7 @@ body {
     animation: none; }
 
   .flexcontainer .apptitle .language {
-    left: 85%; }
+    left: 82%; }
   .flexcontainer .mapcontainer {
     max-width: 60%; }
   .flexcontainer .menu {
