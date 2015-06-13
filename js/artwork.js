@@ -22,17 +22,25 @@ $(document).ready(function(){
     //artwork animation
     $('.artwork').hide();
     function artAnimate(){
-      $('.artwork').addClass('slideLeft');
+      $('.artwork').addClass('slideLeftAni');
+      $('.artwork').removeClass('slideRightAni');
       $('.artwork').removeClass('slideRight');    
       $('.artwork').show();
-      $('.datacontainer').css('zIndex', '25');  
+      $('.datacontainer').css('zIndex', '25');
+      setTimeout( function(){
+           $('.artwork').removeClass('slideLeftAni');
+           $('.artwork').addClass('slideLeft');
+       },1000);  
     }
     
     $('.artwork_header').on('click', function(){
-        $('.artwork').addClass('slideRight');
+        $('.artwork').addClass('slideRightAni');
+        $('.artwork').removeClass('slideLeftAni');
         $('.artwork').removeClass('slideLeft');
         setTimeout( function(){
             $('.datacontainer').css('zIndex', '20');
+            $('.artwork').removeClass('slideRightAni');
+            $('.artwork').addClass('slideRight');
             $('.artwork').hide();
         },1000);
 

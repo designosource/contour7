@@ -32,6 +32,18 @@ $(document).ready(function(){
     
     getLanguage();
     
+    $('.language a').on('click', function(){
+        console.log('lang');
+        if($(this).hasClass('unselected')) {
+           $(this).removeClass('unselected');
+           $(this).addClass('selected');
+        }
+        else {
+          $(this).addClass('unselected');
+          $(this).removeClass('selected'); 
+        }
+    });
+    
     //Map initializer
     $(".mapcontainer").mapael({
         map : {
@@ -39,7 +51,7 @@ $(document).ready(function(){
             zoom : { enabled : true, maxLevel : 10, mousewheel : true },
         },
         areas: {
-            "groen" : { attrs : { fill : "#129764" } },
+            "groen" : { attrs : { fill : "#909090" } },
             "water" : { attrs : { fill : "#6283c2" } },
             "straat" : { attrs : { fill : "#fff" } },
             "straatnaam" : { attrs : { fill : "#666666" } },
@@ -112,27 +124,47 @@ $(document).ready(function(){
 
     function menuAnimate(head, menu){
         if(menu.hasClass('active')) {
+                menu.removeClass('activeAni');
                 menu.removeClass('active');
-                menu.addClass('unactive');
-                head.find('h2').css("background-image","url(images/arrow-up.png)");
+                menu.addClass('unactiveAni');
+                head.find('h2').css("background-image","url(images/arrow-up.svg)");
+                setTimeout( function(){
+                menu.removeClass('unactiveAni');
+                menu.addClass('unactive');     
+                },1000);
             }
             else {
+                menu.removeClass('unactiveAni');
                 menu.removeClass('unactive');
-                menu.addClass('active'); 
-                head.find('h2').css("background-image","url(images/arrow-down.png)");
+                menu.addClass('activeAni'); 
+                head.find('h2').css("background-image","url(images/arrow-down.svg)");
+                setTimeout( function(){
+                menu.removeClass('activeAni');
+                menu.addClass('active');    
+                },1000)
             }
     }
     
     function menuAnimateTablet(head, menu){
         if(menu.hasClass('active')) {
+                menu.removeClass('activeAni');
                 menu.removeClass('active');
-                menu.addClass('unactive');
-                head.find('h2').css("background-image","url(images/arrow-up.png)");
+                menu.addClass('unactiveAni');
+                head.find('h2').css("background-image","url(images/arrow-left.svg)");
+                setTimeout( function(){
+                menu.removeClass('unactiveAni');
+                menu.addClass('unactive');    
+                },1000);
             }
             else {
+                menu.removeClass('unactiveAni');
                 menu.removeClass('unactive');
-                menu.addClass('active'); 
-                head.find('h2').css("background-image","url(images/arrow-down.png)");
+                menu.addClass('activeAni'); 
+                head.find('h2').css("background-image","url(images/arrow-right.svg)");
+                setTimeout( function(){
+                menu.removeClass('activeAni');
+                menu.addClass('active');    
+                },1000)
             }
     }
     
@@ -185,28 +217,30 @@ $(document).ready(function(){
     //slide in view animation function
     //$('.location').hide();  
     function locAnimate(){
-       $('.location').addClass('slideLeft');
+       $('.location').addClass('slideLeftAni');
+       $('.location').removeClass('slideRightAni');  
        $('.location').removeClass('slideRight');    
        $('.location').show();
        $('.datacontainer').css('zIndex', '20');
-           
+       setTimeout( function(){
+            $('.location').removeClass('slideLeftAni');
+            $('.location').addClass('slideLeft');
+        },1000);       
     } 
 
     //slide back out of view on click
     $('.location_header').on('click', function(){
-            $('.location').addClass('slideRight');
+            $('.location').addClass('slideRightAni');
+            $('.location').removeClass('slideLeftAni');
             $('.location').removeClass('slideLeft');
             //$('.location').hide();
             setTimeout( function(){
                 $('.datacontainer').css('zIndex', '-20');
+                $('.location').removeClass('slideRightAni');
+                $('.location').addClass('slideRight');
             },1000);
 
     }); 
-    
-    //wanneer scherm groter is dan 768px
-    //animatie functie aanpassen naar juiste animatie
-    //opletten dat bij de 5de locatie alle kunstwerken er op komen
-    //anders eens zien hoe het werkt met overflow scroll
     
     
     
@@ -227,11 +261,7 @@ $(document).ready(function(){
             locAnimate();
             });
         } else {
-<<<<<<< HEAD
             window.location="index.html";
-=======
-            window.location="http://www.liesbethvanaerschot.com/contour/";
->>>>>>> 78129ca40c5faa36f55004c5eada4adca745992e
         }
     } else {
         alert('Could not be cached');

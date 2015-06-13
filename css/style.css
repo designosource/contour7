@@ -122,65 +122,37 @@ html, body {
     left: 46%; }
   100% {
     left: 90%; } }
-@-webkit-keyframes toLeftTablet {
-  0% {
-    left: 100%; }
-  100% {
-    left: 46%; } }
-@-moz-keyframes toLeftTablet {
-  0% {
-    left: 100%; }
-  100% {
-    left: 46%; } }
-@-o-keyframes toLeftTablet {
-  0% {
-    left: 100%; }
-  100% {
-    left: 46%; } }
-@keyframes toLeftTablet {
-  0% {
-    left: 100%; }
-  100% {
-    left: 46%; } }
-@-webkit-keyframes toRightTablet {
-  0% {
-    left: 46%; }
-  100% {
-    left: 100%; } }
-@-moz-keyframes toRightTablet {
-  0% {
-    left: 46%; }
-  100% {
-    left: 100%; } }
-@-o-keyframes toRightTablet {
-  0% {
-    left: 46%; }
-  100% {
-    left: 100%; } }
-@keyframes toRightTablet {
-  0% {
-    left: 46%; }
-  100% {
-    left: 100%; } }
-.active {
+.activeAni {
   -webkit-animation: mobileUp 1s forwards linear;
   -moz-animation: mobileUp 1s forwards linear;
   -o-animation: mobileUp 1s forwards linear;
   animation: mobileUp 1s forwards linear; }
 
+.active {
+  bottom: 0px; }
+
 .unactive {
+  bottom: -340px; }
+
+.unactiveAni {
   -webkit-animation: mobileDown 1s forwards linear;
   -moz-animation: mobileDown 1s forwards linear;
   -o-animation: mobileDown 1s forwards linear;
   animation: mobileDown 1s forwards linear; }
 
-.slideLeft {
+.slideLeftAni {
   -webkit-animation: toLeft 1s forwards linear;
   -moz-animation: toLeft 1s forwards linear;
   -o-animation: toLeft 1s forwards linear;
   animation: toLeft 1s forwards linear; }
 
+.slideLeft {
+  left: 0%; }
+
 .slideRight {
+  left: 100%; }
+
+.slideRightAni {
   -webkit-animation: toRight 1s forwards linear;
   -moz-animation: toRight 1s forwards linear;
   -o-animation: toRight 1s forwards linear;
@@ -199,14 +171,37 @@ body {
     color: #2056A4;
     font-weight: 700;
     padding: 15px 0px;
-    margin: 0 auto; }
+    margin: 0 auto;
+    background-color: white; }
   .flexcontainer .apptitle {
     position: fixed;
     top: 0px;
     width: 100%;
-    background-color: white;
     z-index: 100;
-    height: 2%; }
+    height: 46px; }
+    .flexcontainer .apptitle .language {
+      position: relative;
+      bottom: 34px;
+      left: 65%;
+      z-index: 200; }
+      .flexcontainer .apptitle .language .unselected {
+        background-image: url(../images/lang_unselected.svg); }
+      .flexcontainer .apptitle .language .selected {
+        background-image: url(../images/lang_selected.svg); }
+      .flexcontainer .apptitle .language a {
+        display: inline-block;
+        text-decoration: none;
+        color: #2056A4;
+        font-weight: 700;
+        width: 32px;
+        height: 15px;
+        font-size: 0.7rem;
+        background-repeat: no-repeat;
+        background-position: center left;
+        background-size: 15px;
+        text-align: right;
+        vertical-align: middle;
+        padding-top: 6px; }
   .flexcontainer .controls {
     position: absolute;
     top: 0px;
@@ -252,7 +247,6 @@ body {
     margin: 0 auto; }
   .flexcontainer .menu {
     position: fixed;
-    bottom: -340px;
     width: 100%;
     max-width: inherit;
     background-color: #fff; }
@@ -268,21 +262,23 @@ body {
       text-transform: uppercase;
       color: #2056A4;
       font-weight: 700;
-      padding: 20px 20px 20px 0px;
+      padding: 5px 20px 5px 0px;
       margin: 0px 20px 0px 30px;
-      background-image: url(../images/arrow-up.png);
+      background-image: url(../images/arrow-up.svg);
       background-repeat: no-repeat;
       background-position: 100% center;
       background-size: 25px; }
+      .flexcontainer .menu .locations .locations_mobileheader h2 img {
+        width: 50px; }
     .flexcontainer .menu .locations .locations_header {
       display: none; }
       .flexcontainer .menu .locations .locations_header h2 {
         text-transform: uppercase;
         color: #2056A4;
         font-weight: 700;
-        padding: 20px 20px 20px 0px;
+        padding: 5px 20px 5px 20px;
         margin: 0px 20px 0px 30px;
-        background-image: url(../images/arrow-up.png);
+        background-image: url(../images/arrow-up.svg);
         background-repeat: no-repeat;
         background-position: 100% center;
         background-size: 25px; }
@@ -291,7 +287,7 @@ body {
       .flexcontainer .menu .locations #locations_list li {
         color: #2056A4;
         padding: 10px 25px 10px 30px;
-        background-image: url(../images/arrowright.png);
+        background-image: url(../images/arrowright.svg);
         background-repeat: no-repeat;
         background-position: 91% center;
         background-size: 12px;
@@ -299,7 +295,7 @@ body {
         .flexcontainer .menu .locations #locations_list li:hover {
           background-color: #2056A4;
           color: white;
-          background-image: url(../images/arrowright_w.png); }
+          background-image: url(../images/arrowright_w.svg); }
         .flexcontainer .menu .locations #locations_list li a {
           color: inherit;
           width: 100%;
@@ -333,12 +329,13 @@ body {
         padding: 0 1px; }
     .flexcontainer .datacontainer .location {
       position: absolute;
-      left: 100%;
       min-width: 300px;
+      width: 100%;
       height: 100%;
       z-index: 20;
-      padding-top: 38.8px;
-      background-color: #fff; }
+      padding-top: 45px;
+      background-color: #fff;
+      box-sizing: border-box; }
       .flexcontainer .datacontainer .location .location_header {
         background-color: #2056A4;
         margin: 0 auto;
@@ -349,7 +346,7 @@ body {
           text-decoration: none;
           display: block;
           width: 100%;
-          background-image: url("../images/arrowleft_w.png");
+          background-image: url("../images/arrowleft_w.svg");
           background-repeat: no-repeat;
           background-position: 5% center;
           background-size: 15px; }
@@ -393,7 +390,7 @@ body {
         .flexcontainer .datacontainer .location .art_lists ul li {
           display: block;
           padding-bottom: 10px;
-          background-image: url(../images/arrowright.png);
+          background-image: url(../images/arrowright.svg);
           background-position: right center;
           background-size: 15px;
           background-repeat: no-repeat; }
@@ -419,12 +416,12 @@ body {
               font-weight: bolder; }
     .flexcontainer .datacontainer .artwork {
       position: absolute;
-      left: 100%;
       min-width: 300px;
       height: 100%;
       z-index: 20;
-      padding-top: 38.8px;
-      background-color: #fff; }
+      padding-top: 45px;
+      background-color: #fff;
+      box-sizing: border-box; }
       .flexcontainer .datacontainer .artwork .artwork_header {
         background-color: #2056A4;
         margin: 0 auto;
@@ -435,7 +432,7 @@ body {
           text-decoration: none;
           display: block;
           width: 100%;
-          background-image: url("../images/arrowleft_w.png");
+          background-image: url("../images/arrowleft_w.svg");
           background-repeat: no-repeat;
           background-position: 5% center;
           background-size: 15px; }
@@ -494,49 +491,54 @@ body {
     font-size: 1.4rem; }
     .flexcontainer .datacontainer .loc_number span {
       font-size: 1rem; }
-  .flexcontainer .datacontainer .location {
-    min-width: 350px; }
-    .flexcontainer .datacontainer .location .location_header a {
-      background-size: 18px; }
-      .flexcontainer .datacontainer .location .location_header a h2 {
-        font-size: 100%; }
-      .flexcontainer .datacontainer .location .location_header a img {
-        width: 15px;
-        padding-right: 20px; }
-    .flexcontainer .datacontainer .location .location_info #location_address {
-      display: inline-block;
-      padding-left: 10px; }
-    .flexcontainer .datacontainer .location .location_info #location_description {
-      font-size: 0.9rem; }
-    .flexcontainer .datacontainer .location .art_lists ul li {
-      background-size: 18px; }
-  .flexcontainer .datacontainer .artwork {
-    min-width: 350px; }
-    .flexcontainer .datacontainer .artwork .artwork_header a {
-      background-size: 18px; }
-      .flexcontainer .datacontainer .artwork .artwork_header a h2 {
-        font-size: 100%; }
-      .flexcontainer .datacontainer .artwork .artwork_header a img {
-        width: 15px;
-        padding-right: 20px; }
-    .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
-      font-size: 1.1rem; }
-      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
-        font-size: 0.9rem;
-        padding-left: 18px; }
-        .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
-          padding: 2px 0px; } }
+  .flexcontainer .datacontainer .location .location_header a {
+    background-size: 18px; }
+    .flexcontainer .datacontainer .location .location_header a h2 {
+      font-size: 100%; }
+    .flexcontainer .datacontainer .location .location_header a img {
+      width: 15px;
+      padding-right: 20px; }
+  .flexcontainer .datacontainer .location .location_info #location_address {
+    display: inline-block;
+    padding-left: 10px; }
+  .flexcontainer .datacontainer .location .location_info #location_description {
+    font-size: 0.9rem; }
+  .flexcontainer .datacontainer .location .art_lists ul li {
+    background-size: 18px; }
+  .flexcontainer .datacontainer .artwork .artwork_header a {
+    background-size: 18px; }
+    .flexcontainer .datacontainer .artwork .artwork_header a h2 {
+      font-size: 100%; }
+    .flexcontainer .datacontainer .artwork .artwork_header a img {
+      width: 15px;
+      padding-right: 20px; }
+  .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
+    font-size: 1.1rem; }
+    .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
+      font-size: 0.9rem;
+      padding-left: 18px; }
+      .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist li {
+        padding: 2px 0px; } }
 @media only screen and (min-width: 480px) {
+  .flexcontainer .apptitle .language {
+    bottom: 36px;
+    left: 75%; }
+    .flexcontainer .apptitle .language a {
+      width: 40px;
+      height: 20px;
+      font-size: 0.9rem;
+      background-size: 20px;
+      padding-left: 5px; }
   .flexcontainer .menu .locations .locations_header h2 {
     background-position: 96% center; }
   .flexcontainer .datacontainer .location {
-    min-width: 470px; }
+    min-width: 400px; }
     .flexcontainer .datacontainer .location .location_info {
       padding: 30px 30px 30px 30px; }
     .flexcontainer .datacontainer .location .art_lists {
       padding: 20px 30px 20px 30px; }
   .flexcontainer .datacontainer .artwork {
-    min-width: 470px; }
+    min-width: 400px; }
     .flexcontainer .datacontainer .artwork .artwork_info .artist_info {
       padding: 20px 30px 30px 30px; }
       .flexcontainer .datacontainer .artwork .artwork_info .artist_info .artist {
@@ -546,31 +548,29 @@ body {
       padding: 20px 30px 20px 30px; }
       .flexcontainer .datacontainer .artwork .artwork_desc .artwork_title {
         font-size: 0.8rem; } }
-@media only screen and (min-width: 800px) and (max-width: 980px) {
-  .active {
+@media only screen and (min-width: 800px) {
+  .activeAni {
     -webkit-animation: tabletLeft 1s forwards linear;
     -moz-animation: tabletLeft 1s forwards linear;
     -o-animation: tabletLeft 1s forwards linear;
     animation: tabletLeft 1s forwards linear; }
 
+  .active {
+    left: 46%; }
+
   .unactive {
+    left: 90%; }
+
+  .unactiveAni {
     -webkit-animation: tabletRight 1s forwards linear;
     -moz-animation: tabletRight 1s forwards linear;
     -o-animation: tabletRight 1s forwards linear;
     animation: tabletRight 1s forwards linear; }
 
-  .slideLeft {
-    -webkit-animation: toLeftTablet 1s forwards linear;
-    -moz-animation: toLeftTablet 1s forwards linear;
-    -o-animation: toLeftTablet 1s forwards linear;
-    animation: toLeftTablet 1s forwards linear; }
-
-  .slideRight {
-    -webkit-animation: toRightTablet 1s forwards linear;
-    -moz-animation: toRightTablet 1s forwards linear;
-    -o-animation: toRightTablet 1s forwards linear;
-    animation: toRightTablet 1s forwards linear; }
-
+  .flexcontainer .apptitle .language {
+    left: 80%; }
+    .flexcontainer .apptitle .language a {
+      margin-left: 8px; }
   .flexcontainer .mapcontainer {
     max-width: 90%;
     margin: 0 0;
@@ -582,8 +582,7 @@ body {
     display: block;
     float: left;
     height: 100%;
-    width: 54%;
-    left: 90%; }
+    width: 54%; }
     .flexcontainer .menu .locations {
       height: 100%; }
       .flexcontainer .menu .locations .locations_mobileheader {
@@ -593,14 +592,13 @@ body {
         height: 100%;
         padding: 50px 0px;
         box-sizing: border-box;
-        max-width: 90px;
         width: 20%;
         float: left; }
         .flexcontainer .menu .locations .locations_header h2 {
           background-position: center 100%;
           height: inherit;
-          padding: 20px;
-          margin: 0px; }
+          margin: 0px;
+          background-image: url(../images/arrow-left.svg); }
       .flexcontainer .menu .locations #locations_list {
         display: block;
         float: left;
@@ -611,13 +609,37 @@ body {
         overflow: auto; }
         .flexcontainer .menu .locations #locations_list li {
           padding: 15px 25px 15px 30px; }
-  .flexcontainer .datacontainer .location {
-    /*min-width: 768px;
-    max-width: 980px;*/
+  .flexcontainer .datacontainer {
+    right: 0;
     width: 54%; }
-  .flexcontainer .datacontainer .artwork {
-    /*min-width: 768px;
-    max-width: 980px;*/
-    width: 54%; } }
+    .flexcontainer .datacontainer .location {
+      min-width: 100%; }
+    .flexcontainer .datacontainer .artwork {
+      min-width: 100%; } }
+@media only screen and (min-width: 1024px) {
+  .activeAni {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -o-animation: none;
+    animation: none; }
+
+  .unactiveAni {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -o-animation: none;
+    animation: none; }
+
+  .flexcontainer .apptitle .language {
+    left: 85%; }
+  .flexcontainer .mapcontainer {
+    max-width: 60%; }
+  .flexcontainer .menu {
+    position: relative;
+    width: 40%;
+    left: 0%; }
+    .flexcontainer .menu .locations .locations_header h2 {
+      background-image: none !important; }
+  .flexcontainer .datacontainer {
+    width: 40%; } }
 
 /*# sourceMappingURL=style.css.map */
