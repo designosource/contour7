@@ -123,10 +123,10 @@ html, body {
   100% {
     left: 90%; } }
 .activeAni {
-  -webkit-animation: mobileUp 1s forwards linear;
-  -moz-animation: mobileUp 1s forwards linear;
-  -o-animation: mobileUp 1s forwards linear;
-  animation: mobileUp 1s forwards linear; }
+  -webkit-animation: mobileUp 0.8s forwards linear;
+  -moz-animation: mobileUp 0.8s forwards linear;
+  -o-animation: mobileUp 0.8s forwards linear;
+  animation: mobileUp 0.8s forwards linear; }
 
 .active {
   bottom: 0px; }
@@ -135,16 +135,16 @@ html, body {
   bottom: -340px; }
 
 .unactiveAni {
-  -webkit-animation: mobileDown 1s forwards linear;
-  -moz-animation: mobileDown 1s forwards linear;
-  -o-animation: mobileDown 1s forwards linear;
-  animation: mobileDown 1s forwards linear; }
+  -webkit-animation: mobileDown 0.8s forwards linear;
+  -moz-animation: mobileDown 0.8s forwards linear;
+  -o-animation: mobileDown 0.8s forwards linear;
+  animation: mobileDown 0.8s forwards linear; }
 
 .slideLeftAni {
-  -webkit-animation: toLeft 1s forwards linear;
-  -moz-animation: toLeft 1s forwards linear;
-  -o-animation: toLeft 1s forwards linear;
-  animation: toLeft 1s forwards linear; }
+  -webkit-animation: toLeft 0.8s forwards linear;
+  -moz-animation: toLeft 0.8s forwards linear;
+  -o-animation: toLeft 0.8s forwards linear;
+  animation: toLeft 0.8s forwards linear; }
 
 .slideLeft {
   left: 0%; }
@@ -153,10 +153,10 @@ html, body {
   left: 100%; }
 
 .slideRightAni {
-  -webkit-animation: toRight 1s forwards linear;
-  -moz-animation: toRight 1s forwards linear;
-  -o-animation: toRight 1s forwards linear;
-  animation: toRight 1s forwards linear; }
+  -webkit-animation: toRight 0.8s forwards linear;
+  -moz-animation: toRight 0.8s forwards linear;
+  -o-animation: toRight 0.8s forwards linear;
+  animation: toRight 0.8s forwards linear; }
 
 body {
   overflow-x: hidden;
@@ -249,7 +249,8 @@ body {
     position: fixed;
     width: 100%;
     max-width: inherit;
-    background-color: #fff; }
+    background-color: #fff;
+    z-index: 8; }
     .flexcontainer .menu .location_number {
       width: 25px;
       font-size: 1rem;
@@ -550,10 +551,10 @@ body {
         font-size: 0.8rem; } }
 @media only screen and (min-width: 800px) {
   .activeAni {
-    -webkit-animation: tabletLeft 1s forwards linear;
-    -moz-animation: tabletLeft 1s forwards linear;
-    -o-animation: tabletLeft 1s forwards linear;
-    animation: tabletLeft 1s forwards linear; }
+    -webkit-animation: tabletLeft 0.8s forwards linear;
+    -moz-animation: tabletLeft 0.8s forwards linear;
+    -o-animation: tabletLeft 0.8s forwards linear;
+    animation: tabletLeft 0.8s forwards linear; }
 
   .active {
     left: 46%; }
@@ -562,10 +563,10 @@ body {
     left: 90%; }
 
   .unactiveAni {
-    -webkit-animation: tabletRight 1s forwards linear;
-    -moz-animation: tabletRight 1s forwards linear;
-    -o-animation: tabletRight 1s forwards linear;
-    animation: tabletRight 1s forwards linear; }
+    -webkit-animation: tabletRight 0.8s forwards linear;
+    -moz-animation: tabletRight 0.8s forwards linear;
+    -o-animation: tabletRight 0.8s forwards linear;
+    animation: tabletRight 0.8s forwards linear; }
 
   .flexcontainer .apptitle .language {
     left: 80%; }
