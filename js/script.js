@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    console.log('Version 0.6.0');
+    console.log('Version 0.7.0');
     
     //Variables DO NOT TOUCH
     var executed = false;
@@ -8,6 +8,11 @@ $(document).ready(function(){
     var language;
     
     //Detect the language
+    function selectLanguage() {
+        var lng = language.toUpperCase();
+        $('.language a:contains(' + lng + ')').removeClass('unselected');
+        $('.language a:contains(' + lng + ')').addClass('selected');
+    }
     function getUrlParameter(sParam)
     {
         var sPageURL = window.location.search.substring(1);
@@ -25,8 +30,9 @@ $(document).ready(function(){
         if(getUrlParameter('lng')) {
             language = getUrlParameter('lng');
         } else {
-            language = window.navigator.userLanguage || window.navigator.language;
+            language = window.navigator.userLanguage || window.navigator.language || "en";
         }
+        selectLanguage();
     }
     getLanguage();
 
@@ -79,17 +85,16 @@ $(document).ready(function(){
         //Artist translations
         else if(field == 'artist_nationality') {
             if(language == 'nl') {
-                return jsonObject[id].artworks[artwork_id].artist.nationality_nl;
+                return jsonObject[id].artworks[artwork_id].artist['nationality_nl'];
             } else if (language == 'en'){
-                return jsonObject[id].artworks[artwork_id].artist.nationality_en;
+                return jsonObject[id].artworks[artwork_id].artist['nationality_en'];
             } else if (language == 'fr'){
-                return jsonObject[id].artworks[artwork_id].artist.nationality_fr;
+                return jsonObject[id].artworks[artwork_id].artist['nationality_fr'];
             }
         }
     }
 
     $('.language a').on('click', function(){
-        console.log('lang');
         if($(this).hasClass('unselected')) {
            $(this).removeClass('unselected');
            $(this).addClass('selected');
@@ -310,9 +315,9 @@ $(document).ready(function(){
         $('.artwork_header').find('h2').html(art.code);
         $('.artist_name').html(art.artist['name']);
         $('.artist_birth').html(art.artist['year_birth']);
-        $('.artist_nat').html(art.artist['nationality_nl']);
-        $('.artwork_title').html(art.name_nl);
-        $('.artwork_text').html(art.description_nl);
+        $('.artist_nat').html(getTranslation('artist_nationality', language, pos, artpos));
+        $('.artwork_title').html(getTranslation('artwork_name', language, pos, artpos));
+        $('.artwork_text').html(getTranslation('artwork_description', language, pos, artpos));
     }
     
     //artwork animation
