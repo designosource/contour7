@@ -94,22 +94,6 @@ $(document).ready(function(){
         }
     }
     
-    function showSelectedLang(language){
-        switch(language){
-            case 'nl':
-               $('#nl').addClass('selected').removeClass('unselected'); 
-            break;
-            case 'en':
-                $('#en').addClass('selected').removeClass('unselected');
-            break;
-            case 'fr':
-                $('#fr').addClass('selected').removeClass('unselected');
-            break;
-        }
-    }
-    
-    showSelectedLang(language);
-    
     //Map initializer
     $(".mapcontainer").mapael({
         map : {
