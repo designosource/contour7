@@ -10,14 +10,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Caching</h1>
-    <p>Welcome to the caching thingy</p>
+    <div class="loading">
+        <img src="images/logo.png" alt="">
+        <a class="button" href="map.html">Loading...</a>
+    </div>
+    
     
     <script type="text/javascript" src="js/jquery-latest.min.js"></script>
     <script type="text/javascript">
         if(typeof(Storage) !== "undefined") {
             if (localStorage.getItem('contour_data')) {
-                window.location="map.html";
+                //window.location="map.html";
             } else {
                 var uidTimestamp = new Date().getTime();
                 var uidNumber = Math.floor(Math.random() * 900000) + 100000;

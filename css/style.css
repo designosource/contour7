@@ -2,6 +2,24 @@ html, body {
   height: 100%;
   font-family: Arimo, sans-serif; }
 
+.loading {
+  margin: 0 auto;
+  text-align: center; }
+  .loading img {
+    margin: 30% auto; }
+  .loading .button {
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    background-color: #2056A4;
+    padding: 10px 5px;
+    display: block;
+    width: 80px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+    border-radius: 6px; }
+
 @-webkit-keyframes mobileUp {
   0% {
     bottom: -340px; }
