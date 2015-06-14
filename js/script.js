@@ -93,17 +93,22 @@ $(document).ready(function(){
             }
         }
     }
-
-    $('.language a').on('click', function(){
-        if($(this).hasClass('unselected')) {
-           $(this).removeClass('unselected');
-           $(this).addClass('selected');
+    
+    function showSelectedLang(language){
+        switch(language){
+            case 'nl':
+               $('#nl').addClass('selected').removeClass('unselected'); 
+            break;
+            case 'en':
+                $('#en').addClass('selected').removeClass('unselected');
+            break;
+            case 'fr':
+                $('#fr').addClass('selected').removeClass('unselected');
+            break;
         }
-        else {
-          $(this).addClass('unselected');
-          $(this).removeClass('selected'); 
-        }
-    });
+    }
+    
+    showSelectedLang(language);
     
     //Map initializer
     $(".mapcontainer").mapael({
@@ -192,7 +197,7 @@ $(document).ready(function(){
                 setTimeout( function(){
                 menu.removeClass('unactiveAni');
                 menu.addClass('unactive');     
-                },1000);
+                },800);
             }
             else {
                 menu.removeClass('unactiveAni');
@@ -202,7 +207,7 @@ $(document).ready(function(){
                 setTimeout( function(){
                 menu.removeClass('activeAni');
                 menu.addClass('active');    
-                },1000)
+                },800)
             }
     }
     //horizontal animation
@@ -215,7 +220,7 @@ $(document).ready(function(){
                 setTimeout( function(){
                 menu.removeClass('unactiveAni');
                 menu.addClass('unactive');    
-                },1000);
+                },800);
             }
             else {
                 menu.removeClass('unactiveAni');
@@ -225,7 +230,7 @@ $(document).ready(function(){
                 setTimeout( function(){
                 menu.removeClass('activeAni');
                 menu.addClass('active');    
-                },1000)
+                },800)
             }
     }
     
@@ -284,7 +289,7 @@ $(document).ready(function(){
        setTimeout( function(){
             $('.location').removeClass('slideLeftAni');
             $('.location').addClass('slideLeft');
-        },1000);       
+        },800);       
     } 
 
     //slide back out of view on click
@@ -297,7 +302,7 @@ $(document).ready(function(){
                 $('.datacontainer').css('zIndex', '-20');
                 $('.location').removeClass('slideRightAni');
                 $('.location').addClass('slideRight');
-            },1000);
+            },800);
 
     }); 
     
@@ -328,22 +333,27 @@ $(document).ready(function(){
       $('.artwork').removeClass('slideRight');    
       $('.artwork').show();
       $('.datacontainer').css('zIndex', '25');
+      $('.location').addClass('slideRightAni');    
+          
       setTimeout( function(){
            $('.artwork').removeClass('slideLeftAni');
            $('.artwork').addClass('slideLeft');
-       },1000);  
+           $('.location').removeClass('slideRightAni');
+           $('.location').hide();
+       },800);  
     }
     
     $('.artwork_header').on('click', function(){
         $('.artwork').addClass('slideRightAni');
         $('.artwork').removeClass('slideLeftAni');
         $('.artwork').removeClass('slideLeft');
+        $('.location').show();
         setTimeout( function(){
             $('.datacontainer').css('zIndex', '20');
             $('.artwork').removeClass('slideRightAni');
             $('.artwork').addClass('slideRight');
             $('.artwork').hide();
-        },1000);
+        },800);
 
     });
     
