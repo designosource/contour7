@@ -12,7 +12,7 @@
 <body>
     <div class="loading">
         <img src="images/logo.png" alt="">
-        <a class="button" href="map.html">Loading...</a>
+        <a class="button" href="index.html">Loading...</a>
     </div>
     
     
@@ -21,6 +21,8 @@
         if(typeof(Storage) !== "undefined") {
             if (localStorage.getItem('contour_data')) {
                 //window.location="map.html";
+                $('.button').text('Start');
+                $('.button').attr('href', 'map.html');
             } else {
                 var uidTimestamp = new Date().getTime();
                 var uidNumber = Math.floor(Math.random() * 900000) + 100000;
