@@ -647,6 +647,7 @@ and (min-width : 350px) {
       }    
       .datacontainer
       {
+          overflow-x: hidden;
           .loc_number {
             font-size: 1.4rem;
             span {
